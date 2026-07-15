@@ -152,7 +152,7 @@ const Footer = () => {
                 <div className="pt-10 border-t border-border">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                         <p className="text-xs  text-muted-foreground">
-                            © {currentYear} STRIX DEVS. All rights reserved.
+                            © {currentYear} Strix Devs. All rights reserved.
                         </p>
                         <div className="flex gap-8">
                             <Link

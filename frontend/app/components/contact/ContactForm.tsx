@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from "framer-motion";
-import { ArrowUpRight} from 'lucide-react';
+import { ArrowUpRight, Check} from 'lucide-react';
 import { contactInfo } from '~/Data/data';
 import { SendEmail } from '~/lib/email';
 
@@ -52,9 +52,12 @@ const ContactForm = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.7 }}
                     >
-                        <h2 className="text-2xl  mb-8">
-                            Send us a message
-                        </h2>
+                        <h2 className="text-2xl mb-4">Let's Talk</h2>
+                        <p className="text-muted-foreground mb-8 leading-relaxed">
+                            Have questions before starting? Reach out anytime.
+                            We'd love to discuss your ideas and explore how
+                            Strix Devs can help your business grow.
+                        </p>
 
                         <form onSubmit={handleSubmit} className="space-y-8">
                             <div className="grid md:grid-cols-2 gap-8">
@@ -111,7 +114,7 @@ const ContactForm = () => {
                                     required
                                     rows={5}
                                     className="w-full px-0 py-4 bg-transparent border-0 border-b border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground transition-colors resize-none"
-                                    placeholder="Tell us about your project, goals, and timeline..."
+                                    placeholder="Describe your project, business goals, expected features, timeline, and budget (optional). We'll review everything and get back to you within 24 hours."
                                 />
                             </div>
 
@@ -124,15 +127,62 @@ const ContactForm = () => {
                             >
                                 <span>
                                     {isSubmitting
-                                        ? "Sending..."
+                                        ? "Sending Consultation Request..."
                                         : isSubmitted
-                                          ? "Message Sent!"
-                                          : "Send Message"}
+                                          ? "Consultation Request Sent!"
+                                          : "Get Free Consultation"}
                                 </span>
                                 {!isSubmitting && !isSubmitted && (
-                                    <ArrowUpRight className="w-4 h-4" />
+                                    <ArrowUpRight
+                                        className="w-4 h-4"
+                                        aria-hidden="true"
+                                    />
+                                )}
+                                {isSubmitted && (
+                                    <Check
+                                        className="w-4 h-4"
+                                        aria-hidden="true"
+                                    />
                                 )}
                             </motion.button>
+                            <ul
+                                className="flex flex-wrap gap-x-6 gap-y-2 mt-5 text-xs text-muted-foreground"
+                                aria-label="Consultation guarantees"
+                            >
+                                <li className="flex items-center gap-1.5">
+                                    <Check
+                                        className="w-3.5 h-3.5"
+                                        aria-hidden="true"
+                                    />
+                                    Free Consultation
+                                </li>
+                                <li className="flex items-center gap-1.5">
+                                    <Check
+                                        className="w-3.5 h-3.5"
+                                        aria-hidden="true"
+                                    />
+                                    No Commitment Required
+                                </li>
+                                <li className="flex items-center gap-1.5">
+                                    <Check
+                                        className="w-3.5 h-3.5"
+                                        aria-hidden="true"
+                                    />
+                                    Response Within 24 Hours
+                                </li>
+                            </ul>
+
+                            {isSubmitted && (
+                                <p
+                                    role="status"
+                                    aria-live="polite"
+                                    className="mt-4 text-sm text-muted-foreground"
+                                >
+                                    Thanks for reaching out. We've received your
+                                    request and will be in touch within 24
+                                    hours.
+                                </p>
+                            )}
                         </form>
                     </motion.div>
 
@@ -143,9 +193,7 @@ const ContactForm = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.7 }}
                     >
-                        <h2 className="text-2xl  mb-8">
-                            Contact Information
-                        </h2>
+                        <h2 className="text-2xl  mb-8">Contact Information</h2>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-0">
                             {contactInfo.map((info, index) => (

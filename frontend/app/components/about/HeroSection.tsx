@@ -31,27 +31,32 @@ const HeroSection = () => {
                     </h1>
 
                     <div className="grid lg:grid-cols-2 gap-12">
-                        <p className="text-xl text-muted-foreground leading-relaxed">
-                            <strong className="text-foreground/70">
+                        <p className="text-muted-foreground leading-relaxed">
+                            <strong className="text-lg text-foreground/70">
                                 STRIX{" "}
                                 <span className="font-heading glow-text">
-                                    DEVS{" "}
+                                    DEVS
                                 </span>
-                            </strong>
-                            is a boutique web development agency based in
-                            Toronto, Canada. We specialize in creating smart,
-                            secure, and scalable digital solutions for startups
-                            and growing businesses.
+                            </strong>{" "}
+                            is a modern web development agency helping startups,
+                            businesses, and entrepreneurs build fast, secure,
+                            and scalable digital products. We specialize in
+                            custom web applications, SaaS platforms, business
+                            websites, dashboards, APIs, and AI-powered
+                            automation solutions that drive real business
+                            growth.
                         </p>
                         <p className="text-muted-foreground leading-relaxed">
-                            Our name comes from{" "}
+                            Our name is inspired by{" "}
                             <strong className="text-foreground/70">
-                                "STRIX"{" "}
-                            </strong>{" "}
-                            – the owl genus – representing wisdom, insight, and
-                            the ability to see opportunities where others see
-                            challenges. Like the owl, we work with precision and
-                            deliver solutions that stand the test of time.
+                                "STRIX"
+                            </strong>
+                            , the owl genus, symbolizing wisdom, precision, and
+                            strategic thinking. These values shape how we
+                            approach every project—combining thoughtful design,
+                            modern technology, and clean engineering to deliver
+                            solutions that are reliable, scalable, and built for
+                            long-term success.
                         </p>
                     </div>
                 </motion.div>
