@@ -108,9 +108,9 @@ export const WhyUs = () => {
                                 {point.number}
                             </h3>
 
-                            <h3 className="font-display text-lg font-semibold tracking-tight mb-3 pr-8">
+                            <h4 className="font-display text-lg font-semibold tracking-tight mb-3 pr-8">
                                 {point.title}
-                            </h3>
+                            </h4>
 
                             <p className="text-sm text-muted-foreground leading-relaxed mb-5">
                                 {point.desc}

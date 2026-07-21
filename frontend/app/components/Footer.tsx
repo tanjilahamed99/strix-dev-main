@@ -132,9 +132,9 @@ const Footer = () => {
                     {/* Links columns */}
                     {Object.entries(footerLinks).map(([title, links]) => (
                         <div key={title}>
-                            <h4 className="text-xs  uppercase tracking-[0.2em] text-muted-foreground mb-6">
+                            <h6 className="text-xs  uppercase tracking-[0.2em] text-muted-foreground mb-6">
                                 {title}
-                            </h4>
+                            </h6>
                             <ul className="space-y-4">
                                 {links.map((link) => (
                                     <li

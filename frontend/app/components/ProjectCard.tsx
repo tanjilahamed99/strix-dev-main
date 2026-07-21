@@ -62,9 +62,9 @@ const ProjectCard = ({ project, index, isInView, hoveredIndex, setHoveredIndex }
                     </span>
                 </div>
 
-                <h3 className="text-3xl md:text-4xl lg:text-5xl tracking-tight mb-4 group-hover:translate-x-2 transition-transform duration-500">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl tracking-tight mb-4 group-hover:translate-x-2 transition-transform duration-500">
                     {project.title}
-                </h3>
+                </h1>
 
                 <p className="text-muted-foreground mb-8 max-w-md leading-relaxed">
                     {project.description}

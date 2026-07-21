@@ -400,9 +400,9 @@ export const TechStack = () => {
                             >
                                 {tech.icon}
                             </div>
-                            <h3 className="text-base font-medium tracking-tight">
+                            <h4 className="text-base font-medium tracking-tight">
                                 {tech.name}
-                            </h3>
+                            </h4>
                             <p className=" text-[0.6rem] uppercase tracking-[0.15em] text-muted-foreground mt-0.5">
                                 {tech.category}
                             </p>

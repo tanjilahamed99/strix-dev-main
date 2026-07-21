@@ -33,9 +33,9 @@ const ServicesSection = () => {
                                 </span>
                             </div>
 
-                            <h3 className="text-2xl md:text-3xl  tracking-tight mb-4 group-hover:translate-x-2 transition-transform duration-500">
+                            <h2 className="text-2xl md:text-3xl  tracking-tight mb-4 group-hover:translate-x-2 transition-transform duration-500">
                                 {service.title}
-                            </h3>
+                            </h2>
 
                             <p className="text-muted-foreground mb-6 leading-relaxed">
                                 {service.description}
