@@ -66,9 +66,9 @@ const ServicesSection = () => {
 
                                 {/* Title */}
                                 <div className="lg:col-span-4">
-                                    <h3 className="text-2xl md:text-3xl font-display tracking-tight group-hover:translate-x-2 transition-transform duration-500">
+                                    <h2 className="text-2xl md:text-3xl font-display tracking-tight group-hover:translate-x-2 transition-transform duration-500">
                                         {service.title}
-                                    </h3>
+                                    </h2>
                                 </div>
 
                                 {/* Description */}
