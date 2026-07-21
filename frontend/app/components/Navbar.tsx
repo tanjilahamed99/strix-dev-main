@@ -52,6 +52,7 @@ const Navbar = () => {
                                 src="/images/icon1.png"
                                 className="w-14"
                                 loading="lazy"
+                                alt="Strix Devs Logo"
                             />
                             <span className="text-xl tracking-tight glow-text">
                                 STRIX

@@ -94,8 +94,10 @@ const Footer = () => {
                             {/* Logo */}
                             <img
                                 src="https://i.ibb.co.com/sJM47XhW/icon1.png"
+                                src="/images/icon1.png"
                                 className="w-14"
                                 loading="lazy"
+                                alt="Strix Devs Logo"
                             />
                             <span className="text-xl tracking-tight">
                                 STRIX
