@@ -1,0 +1,14 @@
+# Strix Devs
+
+> Software development and AI solutions agency based building custom web applications, SaaS products, AI automation pipelines, and cloud infrastructure for clients worldwide.
+
+Strix Devs specializes in React/TypeScript web development, AI and RAG implementations, workflow automation (n8n), UI/UX design, DevOps, and API integrations.
+
+## Pages
+- [Home](https://strixdevs.com/)
+- [Services](https://strixdevs.com/services)
+- [Work](https://strixdevs.com/work)
+- [About Us](https://strixdevs.com/about)
+- [Contact](https://strixdevs.com/contact)
+- [Privacy Policy](https://strixdevs.com/privacy-policy)
+- [Terms Of Service](https://strixdevs.com/terms-of-service)

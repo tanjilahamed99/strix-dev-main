@@ -16,10 +16,9 @@ import Footer from "./components/Footer";
 /* ─── Site-wide SEO constants ─────────────────────────────────── */
 const SITE_URL = "https://strixdevs.com";
 const COMPANY = "Strix Devs";
-const TAGLINE = "We Build Scalable Web Applications";
+const TAGLINE = "Modern Web Development & Automation Agency";
 const DESCRIPTION =
-    "Strix Devs is a full-stack software development studio building high-performance web applications, SaaS platforms, and custom business systems using React, Next.js, Node.js and cloud infrastructure. We help startups and companies turn ideas into production-ready products.";
-
+    "Strix Devs helps startups and businesses build scalable web applications, SaaS platforms, AI automation, and custom software using React, Next.js, Node.js, and cloud technologies. Based in Canada, serving clients worldwide.";
 const OG_IMAGE = "https://i.ibb.co.com/Z189FpgK/strixdevs.png";
 const TWITTER = "@strixdevs";
 
@@ -37,10 +36,10 @@ export function meta(): Route.MetaDescriptors {
         },
 
         { name: "author", content: COMPANY },
-        { name: "geo.region", content: "BD" },
-        { name: "geo.placename", content: "Dhaka" },
-        { name: "geo.position", content: "23.8103;90.4125" },
-        { name: "ICBM", content: "23.8103, 90.4125" },
+        { name: "geo.region", content: "CA" },
+        { name: "geo.placename", content: "Toronto" },
+        { name: "geo.position", content: "43.6532; -79.3832" },
+        { name: "ICBM", content: "43.6532, -79.3832" },
 
         /* ── Keywords (FIXED) ── */
         {
@@ -119,13 +118,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
                             url: SITE_URL,
                             logo: OG_IMAGE,
                             description: DESCRIPTION,
-                            email: "ajshajimmax@gmail.com",
+                            email: "info@strixdevs.com",
                             foundingDate: "2024",
                             areaServed: "Worldwide",
                             contactPoint: {
                                 "@type": "ContactPoint",
                                 contactType: "sales",
-                                email: "ajshajimmax@gmail.com",
+                                email: "info@strixdevs.com",
                             },
                             sameAs: [
                                 "https://linkedin.com/company/strixdevs",
@@ -147,20 +146,22 @@ export function Layout({ children }: { children: React.ReactNode }) {
                             url: SITE_URL,
                             image: OG_IMAGE,
                             telephone: "+881518933208",
-                            priceRange: "$$",
+                            priceRange: "$$$$",
                             address: {
                                 "@type": "PostalAddress",
-                                addressCountry: "BD",
-                                addressLocality: "Dhaka",
+                                addressLocality: "Toronto",
+                                addressRegion: "Ontario",
+                                addressCountry: "CA",
                             },
                             geo: {
                                 "@type": "GeoCoordinates",
-                                latitude: 23.8103,
-                                longitude: 90.4125,
+                                latitude: 43.6532,
+                                longitude: -79.3832,
                             },
                             serviceType: [
                                 "Web Development",
                                 "E-Commerce Development",
+                                "AI Automation",
                                 "SaaS Development",
                                 "Custom Web App",
                                 "UI/UX Design",
