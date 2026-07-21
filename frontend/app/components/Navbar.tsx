@@ -8,7 +8,7 @@ const navLinks = [
     { name: "Services", href: "/services" },
     { name: "Work", href: "/work" },
     { name: "About", href: "/about" },
-    { name: "Contact Test", href: "/contact" },
+    { name: "Contact", href: "/contact" },
 ];
 
 const Navbar = () => {
