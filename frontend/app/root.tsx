@@ -19,7 +19,7 @@ const COMPANY = "Strix Devs";
 const TAGLINE = "Modern Web Development & Automation Agency";
 const DESCRIPTION =
     "Strix Devs helps startups and businesses build scalable web applications, SaaS platforms, AI automation, and custom software using React, Next.js, Node.js, and cloud technologies. Based in Canada, serving clients worldwide.";
-const OG_IMAGE = "https://i.ibb.co.com/Z189FpgK/strixdevs.png";
+const OG_IMAGE = "/images/strixdevs.png";
 const TWITTER = "@strixdevs";
 
 /* ─── META ─────────────────────────────────────────────────────── */
@@ -100,11 +100,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <meta name="format-detection" content="telephone=no" />
 
                 {/* Favicon */}
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" href="/images/icon.png" />
                 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
                 <link
                     rel="apple-touch-icon"
-                    href="https://i.ibb.co.com/Z189FpgK/strixdevs.png"
+                    href="/images/strixdevs.png"
                 />
 
                 {/* ── Organization Schema ── */}
@@ -145,7 +145,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
                             name: COMPANY,
                             url: SITE_URL,
                             image: OG_IMAGE,
-                            telephone: "+881518933208",
                             priceRange: "$$$$",
                             address: {
                                 "@type": "PostalAddress",
