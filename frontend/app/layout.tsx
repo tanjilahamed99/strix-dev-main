@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Suspense } from "react";
 import "./app.css";
 import Navbar from "~/components/Navbar";
 import CustomCursor from "~/components/CustomCursor";
@@ -211,7 +212,9 @@ export default function RootLayout({
                 <BookConsultationModal />
                 <FloatingContactFAB />
                 <CookieConsent />
-                <VisitorTracker />
+                <Suspense fallback={null}>
+                    <VisitorTracker />
+                </Suspense>
                 <CustomCursor />
                 <Footer />
             </body>

@@ -7,7 +7,7 @@ export function isValidEmail(email: string): boolean {
     return emailRegex.test(trimmed);
 }
 
-export function sanitizeText(input?: string): string {
-    if (!input) return "";
-    return input.trim().replace(/[<>]/g, "");
+export function sanitizeText(input?: string, maxLength = 5000): string {
+    if (!input || typeof input !== "string") return "";
+    return input.slice(0, maxLength).trim().replace(/[<>]/g, "");
 }

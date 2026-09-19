@@ -4,7 +4,7 @@ import crypto from "crypto";
 import connectToDatabase from "~/lib/db/mongodb";
 import Visitor from "~/lib/db/models/Visitor";
 import PageView from "~/lib/db/models/PageView";
-import { getClientIp } from "~/lib/rateLimit";
+import { resolveGeoLocation } from "~/lib/geo";
 import { VISITOR_COOKIE_NAME } from "~/lib/visitorCookie";
 
 export async function POST(request: Request) {
@@ -26,17 +26,21 @@ export async function POST(request: Request) {
 
         await connectToDatabase();
 
-        const ip = getClientIp(request);
-        const ipHash = crypto.createHash("sha256").update(ip).digest("hex").substring(0, 16);
+        const geo = await resolveGeoLocation(request, {
+            timezone: body.timezone,
+            language: body.language,
+        });
+
+        const ipHash = crypto
+            .createHash("sha256")
+            .update(geo.ip)
+            .digest("hex")
+            .substring(0, 16);
+
         const userAgent = body.userAgent || request.headers.get("user-agent") || undefined;
         const referrer = body.referrer || request.headers.get("referer") || undefined;
 
-        // Server-side location extraction from edge/proxy headers
-        const city = request.headers.get("x-vercel-ip-city") || request.headers.get("cf-ipcity");
-        const country = request.headers.get("x-vercel-ip-country") || request.headers.get("cf-ipcountry");
-        const location = city && country ? `${city}, ${country}` : country || undefined;
-
-        // 1. Upsert Visitor in MongoDB
+        // 1. Upsert Visitor in MongoDB with exact location and identity
         await Visitor.findOneAndUpdate(
             { visitorId },
             {
@@ -47,10 +51,27 @@ export async function POST(request: Request) {
                 $inc: { visitCount: 1 },
                 $set: {
                     lastSeen: new Date(),
+                    ip: geo.ip,
                     ipHash,
+                    country: geo.country,
+                    countryCode: geo.countryCode,
+                    city: geo.city,
+                    region: geo.region,
+                    location: geo.location,
+                    timezone: geo.timezone,
+                    device: geo.device,
+                    browser: geo.browser,
+                    os: geo.os,
                     ...(userAgent ? { userAgent } : {}),
                     ...(referrer ? { referrer } : {}),
-                    ...(location ? { location } : {}),
+                    ...(body.screen ? { screen: body.screen } : {}),
+                    ...(body.language ? { language: body.language } : {}),
+                    ...(body.name ? { name: body.name } : {}),
+                    ...(body.email ? { email: body.email } : {}),
+                    ...(body.phone ? { phone: body.phone } : {}),
+                    ...(body.utmSource ? { utmSource: body.utmSource } : {}),
+                    ...(body.utmMedium ? { utmMedium: body.utmMedium } : {}),
+                    ...(body.utmCampaign ? { utmCampaign: body.utmCampaign } : {}),
                 },
             },
             { upsert: true, new: true }
@@ -63,7 +84,7 @@ export async function POST(request: Request) {
             viewedAt: new Date(),
         });
 
-        return NextResponse.json({ success: true });
+        return NextResponse.json({ success: true, location: geo.location });
     } catch (error) {
         console.warn("Track API warning:", error);
         return NextResponse.json({ success: false }, { status: 500 });

@@ -4,6 +4,7 @@ import crypto from "crypto";
 import connectToDatabase from "~/lib/db/mongodb";
 import Booking from "~/lib/db/models/Booking";
 import Visitor from "~/lib/db/models/Visitor";
+import Message from "~/lib/db/models/Message";
 import {
     sendBookingPendingEmails,
     sendGeneralContactEmail,
@@ -34,20 +35,26 @@ export async function POST(request: Request) {
         }
 
         const body = await request.json();
-        const { type = "consultation" } = body;
+        
+        // Anti-bot honeypot check
+        if (body.hp || body._gotcha || body.website_url) {
+            return NextResponse.json({ success: true, message: "Request received" });
+        }
+
+        const type = body.type || (body.date || body.timeSlot || body.topic ? "consultation" : "inquiry");
 
         await connectToDatabase();
 
         if (type === "consultation") {
             const { name, email, phone, topic, date, timeSlot, timezone, message } = body;
 
-            const cleanName = sanitizeText(name);
-            const cleanEmail = sanitizeText(email).toLowerCase();
-            const cleanPhone = sanitizeText(phone);
-            const cleanTopic = sanitizeText(topic);
-            const cleanDate = sanitizeText(date);
-            const cleanTime = sanitizeText(timeSlot);
-            const cleanMsg = sanitizeText(message);
+            const cleanName = sanitizeText(name, 120);
+            const cleanEmail = sanitizeText(email, 150).toLowerCase();
+            const cleanPhone = sanitizeText(phone, 40);
+            const cleanTopic = sanitizeText(topic, 150);
+            const cleanDate = sanitizeText(date, 50);
+            const cleanTime = sanitizeText(timeSlot, 50);
+            const cleanMsg = sanitizeText(message, 5000);
 
             if (!cleanName || !cleanEmail || !cleanTopic || !cleanDate || !cleanTime) {
                 return NextResponse.json(
@@ -135,10 +142,10 @@ export async function POST(request: Request) {
             // General contact message
             const { name, email, phone, message } = body;
 
-            const cleanName = sanitizeText(name);
-            const cleanEmail = sanitizeText(email).toLowerCase();
-            const cleanPhone = sanitizeText(phone);
-            const cleanMsg = sanitizeText(message);
+            const cleanName = sanitizeText(name, 120);
+            const cleanEmail = sanitizeText(email, 150).toLowerCase();
+            const cleanPhone = sanitizeText(phone, 40);
+            const cleanMsg = sanitizeText(message, 5000);
 
             if (!cleanName || !cleanEmail || !cleanMsg) {
                 return NextResponse.json(
@@ -154,7 +161,21 @@ export async function POST(request: Request) {
                 );
             }
 
-            // Backfill identity onto Visitor in MongoDB
+            // 1. Save inbound contact message to MongoDB Message collection
+            const savedMessage = await Message.create({
+                direction: "inbound",
+                name: cleanName,
+                email: cleanEmail,
+                phone: cleanPhone || undefined,
+                subject: `Inquiry from ${cleanName}`,
+                body: cleanMsg,
+                status: "unread",
+                visitorId: visitorId || undefined,
+                sentTo: "ajshajimmax@gmail.com",
+                sentAt: new Date(),
+            });
+
+            // 2. Backfill identity onto Visitor in MongoDB
             await Visitor.findOneAndUpdate(
                 { visitorId },
                 {
@@ -172,6 +193,7 @@ export async function POST(request: Request) {
                 { upsert: true, new: true }
             );
 
+            // 3. Dispatch confirmation email to client & notification to ajshajimmax@gmail.com + strixdevs CC
             const result = await sendGeneralContactEmail({
                 name: cleanName,
                 email: cleanEmail,
@@ -180,7 +202,8 @@ export async function POST(request: Request) {
 
             const res = NextResponse.json({
                 success: true,
-                message: "Message sent successfully. An engineer will follow up within 24 hours.",
+                messageId: savedMessage._id,
+                message: "Message sent successfully and saved to database. An engineer will follow up within 24 hours.",
                 mode: result.mode,
             });
 

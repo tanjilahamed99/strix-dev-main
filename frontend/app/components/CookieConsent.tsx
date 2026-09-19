@@ -22,8 +22,25 @@ export default function CookieConsent() {
         setIsVisible(false);
 
         try {
+            // Check for locally cached identity from previous visits or form fills
+            let cachedIdentity: { name?: string; email?: string; phone?: string } = {};
+            try {
+                const stored = localStorage.getItem("strix_visitor_identity");
+                if (stored) cachedIdentity = JSON.parse(stored);
+            } catch {}
+
             // Server sets httpOnly, secure, opaque visitor_id cookie and registers visitor
-            await fetch("/api/visitor/consent", { method: "POST" });
+            await fetch("/api/visitor/consent", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                    language: navigator.language,
+                    screen: `${window.screen.width}x${window.screen.height}`,
+                    referrer: document.referrer || undefined,
+                    ...cachedIdentity,
+                }),
+            });
             window.dispatchEvent(new CustomEvent("strix-cookie-consent-accepted"));
         } catch (err) {
             console.warn("Consent registration warning:", err);

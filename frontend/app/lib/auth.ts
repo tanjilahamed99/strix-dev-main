@@ -13,18 +13,30 @@ function signToken(payload: string): string {
 function verifyToken(token: string): boolean {
     if (!token || !token.includes(".")) return false;
     const [payload, sig] = token.split(".");
+    if (!payload || !sig) return false;
+
     const expectedSig = crypto.createHmac("sha256", SECRET).update(payload).digest("hex");
-    if (sig !== expectedSig) return false;
+    
+    // Constant-time signature comparison to prevent timing attacks
+    const sigBuf = Buffer.from(sig);
+    const expectedBuf = Buffer.from(expectedSig);
+    if (sigBuf.length !== expectedBuf.length || !crypto.timingSafeEqual(sigBuf, expectedBuf)) {
+        return false;
+    }
 
     // Check expiry (24 hours)
     const timestamp = parseInt(payload, 10);
     if (isNaN(timestamp)) return false;
     const ageMs = Date.now() - timestamp;
-    return ageMs < 24 * 60 * 60 * 1000;
+    return ageMs >= 0 && ageMs < 24 * 60 * 60 * 1000;
 }
 
 export function checkAdminPassword(password: string): boolean {
-    return password === DEFAULT_PASSWORD;
+    if (typeof password !== "string") return false;
+    const inputBuf = Buffer.from(password);
+    const targetBuf = Buffer.from(DEFAULT_PASSWORD);
+    if (inputBuf.length !== targetBuf.length) return false;
+    return crypto.timingSafeEqual(inputBuf, targetBuf);
 }
 
 export async function setAdminSession(response?: any): Promise<string> {

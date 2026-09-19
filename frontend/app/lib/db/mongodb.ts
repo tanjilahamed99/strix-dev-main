@@ -1,8 +1,6 @@
 import mongoose from "mongoose";
 
-const MONGODB_URI =
-    process.env.MONGODB_URI ||
-    "mongodb+srv://strixdevs10_db_user:FpV80R2YvsYWdvrc@strixdevs.vac1yjm.mongodb.net/strixdevs?retryWrites=true&w=majority&appName=StrixDevs";
+const MONGODB_URI = process.env.MONGODB_URI || "";
 
 interface MongooseCache {
     conn: typeof mongoose | null;
@@ -21,6 +19,13 @@ if (!global.mongooseCache) {
 }
 
 export async function connectToDatabase(): Promise<typeof mongoose> {
+    const uri = process.env.MONGODB_URI || MONGODB_URI;
+    if (!uri) {
+        throw new Error(
+            "Please define the MONGODB_URI environment variable inside .env.local"
+        );
+    }
+
     if (cached.conn) {
         return cached.conn;
     }
@@ -31,7 +36,7 @@ export async function connectToDatabase(): Promise<typeof mongoose> {
             serverSelectionTimeoutMS: 5000,
         };
 
-        cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongooseInstance) => {
+        cached.promise = mongoose.connect(uri, opts).then((mongooseInstance) => {
             return mongooseInstance;
         });
     }
