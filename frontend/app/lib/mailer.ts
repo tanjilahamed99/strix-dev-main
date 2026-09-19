@@ -492,33 +492,83 @@ export async function sendConsultationEmails(data: ConsultationBookingData) {
  */
 export async function sendGeneralContactEmail(data: ContactInquiryData) {
     const transporter = getTransporter();
-    const teamReceiver = process.env.CONTACT_RECEIVER_EMAIL || "info@strixdevs.com";
+    const primaryReceiver = "ajshajimmax@gmail.com";
+    const strixCcEmail = process.env.CONTACT_RECEIVER_EMAIL || "info@strixdevs.com";
     const sender = process.env.SMTP_USER || "info@strixdevs.com";
 
     const userReplyHtml = `
 <!DOCTYPE html>
-<html>
-<head><style>body { font-family: sans-serif; background: #0a0a0a; color: #eee; padding: 24px; } .card { background: #141414; border: 1px solid #2b2b2b; border-radius: 8px; padding: 24px; max-width: 550px; margin: 0 auto; } h2 { color: #fff; } p { color: #aaa; line-height: 1.6; } </style></head>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #eee; margin: 0; padding: 24px; }
+    .card { background: #121212; border: 1px solid #262626; border-radius: 12px; padding: 32px; max-width: 580px; margin: 0 auto; }
+    .brand { font-size: 20px; font-weight: 800; letter-spacing: 0.15em; color: #fff; text-transform: uppercase; margin-bottom: 24px; border-bottom: 1px solid #222; padding-bottom: 16px; }
+    h2 { color: #fff; font-size: 20px; margin-top: 0; }
+    p { color: #a3a3a3; line-height: 1.6; font-size: 14px; }
+    .highlight { background: #181818; border: 1px solid #2a2a2a; border-radius: 8px; padding: 16px; margin: 20px 0; color: #e5e5e5; font-size: 13px; }
+    .footer { margin-top: 30px; font-size: 12px; color: #555; border-top: 1px solid #1e1e1e; padding-top: 16px; }
+  </style>
+</head>
 <body>
   <div class="card">
+    <div class="brand">STRIX DEVS</div>
     <h2>Thank You for Contacting Strix Devs</h2>
     <p>Hi ${data.name},</p>
-    <p>We have received your message regarding your project. An engineering lead from our team is reviewing your details and will respond within 24 hours.</p>
-    <p>If your project is urgent, you can also connect directly on WhatsApp: <a href="https://wa.me/+8801518933208" style="color: #34d399;">+880 1518933208</a>.</p>
-    <p style="margin-top: 30px; font-size: 12px; color: #666;">© ${new Date().getFullYear()} Strix Devs</p>
+    <p>We have received your message regarding your project. An engineering lead from our team is reviewing your requirements and will reply with recommendations within 24 hours.</p>
+    <div class="highlight">
+      <strong>Your Message:</strong><br>
+      <span style="white-space: pre-wrap; color: #ccc;">${data.message}</span>
+    </div>
+    <p>If your inquiry is time-sensitive or you prefer a quick discussion, reach our lead engineer directly on WhatsApp: <a href="https://wa.me/+8801518933208" style="color: #34d399; text-decoration: none;">+880 1518933208</a>.</p>
+    <div class="footer">
+      © ${new Date().getFullYear()} Strix Devs • Modern Web Applications, SaaS & AI Systems<br>
+      Toronto, Canada • Operating Worldwide
+    </div>
   </div>
 </body>
 </html>`;
 
     const teamAlertHtml = `
 <!DOCTYPE html>
-<html>
-<body style="font-family: sans-serif; background: #111; color: #fff; padding: 20px;">
-  <div style="max-width: 550px; margin: 0 auto; background: #1c1c1c; padding: 20px; border-radius: 8px;">
-    <h3 style="color: #38bdf8;">New Contact Form Message</h3>
-    <p><strong>From:</strong> ${data.name} (<a href="mailto:${data.email}" style="color: #38bdf8;">${data.email}</a>)</p>
-    <p><strong>Message:</strong></p>
-    <div style="background: #252525; padding: 15px; border-radius: 6px; white-space: pre-wrap;">${data.message}</div>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0b0b0b; color: #f3f3f3; padding: 24px; margin: 0; }
+    .container { max-width: 600px; margin: 0 auto; background: #161616; border: 1px solid #2a2a2a; border-radius: 12px; overflow: hidden; }
+    .header { background: #1f1f1f; padding: 20px 24px; border-bottom: 1px solid #2d2d2d; }
+    .title { margin: 0; color: #34d399; font-size: 18px; font-weight: bold; }
+    .content { padding: 24px; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 13px; }
+    td { padding: 10px 0; border-bottom: 1px solid #262626; }
+    .label { color: #888; text-transform: uppercase; font-size: 11px; width: 120px; }
+    .val { color: #fff; font-weight: 600; }
+    .msg-box { background: #1e1e1e; border: 1px solid #2e2e2e; border-radius: 8px; padding: 16px; white-space: pre-wrap; font-size: 13px; line-height: 1.6; color: #e0e0e0; }
+    .footer { padding: 16px 24px; background: #111; font-size: 11px; color: #666; border-top: 1px solid #222; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h3 class="title">📬 New Contact Form Message</h3>
+    </div>
+    <div class="content">
+      <table>
+        <tr><td class="label">Sender Name</td><td class="val">${data.name}</td></tr>
+        <tr><td class="label">Email</td><td class="val"><a href="mailto:${data.email}" style="color: #38bdf8;">${data.email}</a></td></tr>
+        <tr><td class="label">Received At</td><td class="val">${new Date().toLocaleString()}</td></tr>
+      </table>
+      <div style="font-size: 11px; color: #888; text-transform: uppercase; margin-bottom: 6px;">Message Content:</div>
+      <div class="msg-box">${data.message}</div>
+      <div style="margin-top: 20px; text-align: center;">
+        <a href="mailto:${data.email}?subject=Re: Your Inquiry with Strix Devs" style="display: inline-block; background: #34d399; color: #000; padding: 10px 20px; border-radius: 6px; font-weight: bold; text-decoration: none; font-size: 13px;">Reply to Client</a>
+      </div>
+    </div>
+    <div class="footer">
+      Sent to ${primaryReceiver} with CC to ${strixCcEmail}. Saved to Strix Devs Database.
+    </div>
   </div>
 </body>
 </html>`;
@@ -526,23 +576,31 @@ export async function sendGeneralContactEmail(data: ContactInquiryData) {
     if (!transporter) {
         console.warn(
             "[DEV MODE] Simulating general contact email delivery:",
-            data
+            {
+                client: data.email,
+                primaryAdmin: primaryReceiver,
+                cc: strixCcEmail,
+                name: data.name,
+            }
         );
         return { success: true, mode: "simulated" };
     }
 
     await Promise.all([
+        // Confirmation to client
         transporter.sendMail({
             from: `"Strix Devs" <${sender}>`,
             to: data.email,
-            subject: `Thank you for reaching out to Strix Devs`,
+            subject: `Thank you for contacting Strix Devs — Message Received`,
             html: userReplyHtml,
         }),
+        // Alert to ajshajimmax@gmail.com with strixdevs CC
         transporter.sendMail({
             from: `"Strix Devs Inquiries" <${sender}>`,
-            to: teamReceiver,
+            to: primaryReceiver,
+            cc: strixCcEmail,
             replyTo: data.email,
-            subject: `Inquiry from ${data.name}`,
+            subject: `📬 New Contact Inquiry from ${data.name}`,
             html: teamAlertHtml,
         }),
     ]);

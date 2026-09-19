@@ -39,6 +39,16 @@ const ContactSection = () => {
                 throw new Error(data.error || "Failed to send message.");
             }
 
+            try {
+                localStorage.setItem(
+                    "strix_visitor_identity",
+                    JSON.stringify({
+                        name: formData.name,
+                        email: formData.email,
+                    })
+                );
+            } catch {}
+
             setFormData({
                 name: "",
                 email: "",

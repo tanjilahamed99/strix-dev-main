@@ -3,8 +3,7 @@ import { cookies } from "next/headers";
 import crypto from "crypto";
 import connectToDatabase from "~/lib/db/mongodb";
 import Visitor from "~/lib/db/models/Visitor";
-import { getClientIp } from "~/lib/rateLimit";
-
+import { resolveGeoLocation } from "~/lib/geo";
 import { VISITOR_COOKIE_NAME } from "~/lib/visitorCookie";
 
 export async function POST(request: Request) {
@@ -18,21 +17,20 @@ export async function POST(request: Request) {
             visitorId = `vid_${crypto.randomUUID().replace(/-/g, "")}`;
         }
 
-        // Set httpOnly, secure cookie
-        cookieStore.set(VISITOR_COOKIE_NAME, visitorId, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "lax",
-            path: "/",
-            maxAge: 60 * 60 * 24 * 365, // 1 year
+        const body = await request.json().catch(() => ({}));
+        const userAgent = request.headers.get("user-agent") || undefined;
+
+        // Resolve exact IP geolocation and device details
+        const geo = await resolveGeoLocation(request, {
+            timezone: body.timezone,
+            language: body.language,
         });
 
-        const ip = getClientIp(request);
-        const ipHash = crypto.createHash("sha256").update(ip).digest("hex").substring(0, 16);
-        const userAgent = request.headers.get("user-agent") || undefined;
-        const city = request.headers.get("x-vercel-ip-city") || request.headers.get("cf-ipcity");
-        const country = request.headers.get("x-vercel-ip-country") || request.headers.get("cf-ipcountry");
-        const location = city && country ? `${city}, ${country}` : country || undefined;
+        const ipHash = crypto
+            .createHash("sha256")
+            .update(geo.ip)
+            .digest("hex")
+            .substring(0, 16);
 
         await Visitor.findOneAndUpdate(
             { visitorId },
@@ -45,15 +43,37 @@ export async function POST(request: Request) {
                 $set: {
                     lastSeen: new Date(),
                     consentedAt: new Date(),
+                    ip: geo.ip,
                     ipHash,
-                    userAgent,
-                    ...(location ? { location } : {}),
+                    country: geo.country,
+                    countryCode: geo.countryCode,
+                    city: geo.city,
+                    region: geo.region,
+                    location: geo.location,
+                    timezone: geo.timezone,
+                    device: geo.device,
+                    browser: geo.browser,
+                    os: geo.os,
+                    ...(userAgent ? { userAgent } : {}),
+                    ...(body.screen ? { screen: body.screen } : {}),
+                    ...(body.language ? { language: body.language } : {}),
+                    ...(body.referrer ? { referrer: body.referrer } : {}),
+                    ...(body.name ? { name: body.name } : {}),
+                    ...(body.email ? { email: body.email } : {}),
+                    ...(body.phone ? { phone: body.phone } : {}),
                 },
             },
             { upsert: true, new: true }
         );
 
-        const response = NextResponse.json({ success: true, visitorId });
+        const response = NextResponse.json({
+            success: true,
+            visitorId,
+            location: geo.location,
+            country: geo.country,
+            city: geo.city,
+        });
+
         response.cookies.set(VISITOR_COOKIE_NAME, visitorId, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",

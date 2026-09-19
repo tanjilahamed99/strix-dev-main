@@ -21,9 +21,11 @@ export async function POST(
         const { id } = await context.params;
         await connectToDatabase();
 
-        const booking = await Booking.findOne({
-            $or: [{ bookingId: id }, { _id: id.match(/^[0-9a-fA-F]{24}$/) ? id : null }],
-        });
+        const queryConditions: Record<string, unknown>[] = [{ bookingId: id }];
+        if (/^[0-9a-fA-F]{24}$/.test(id)) {
+            queryConditions.push({ _id: id });
+        }
+        const booking = await Booking.findOne({ $or: queryConditions });
 
         if (!booking) {
             return NextResponse.json({ error: "Booking not found" }, { status: 404 });
