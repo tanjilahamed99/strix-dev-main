@@ -1,14 +1,83 @@
-# Strix Devs
+# Strix Devs — Modern Web Development & AI Solutions Agency
 
-> Software development and AI solutions agency based building custom web applications, SaaS products, AI automation pipelines, and cloud infrastructure for clients worldwide.
+> Strix Devs is a full-stack software development and AI engineering agency building scalable web applications, SaaS platforms, AI automation systems, and cloud infrastructure for startups and growing businesses worldwide.
 
-Strix Devs specializes in React/TypeScript web development, AI and RAG implementations, workflow automation (n8n), UI/UX design, DevOps, and API integrations.
+## Quick Summary
+- **Website**: https://strixdevs.com
+- **Core Focus**: Custom Web Apps, SaaS Platforms, AI Automation, REST APIs, Cloud & DevOps
+- **Primary Tech Stack**: Next.js, React, TypeScript, Node.js, Python, Tailwind CSS, Docker, PostgreSQL, MongoDB
+- **Free Consultation**: Clients can book a free 30-minute Google Meet consultation at https://strixdevs.com/contact
+- **Contact Email**: info@strixdevs.com
+- **Direct WhatsApp**: +880 1518933208
+- **Headquarters**: Toronto, Canada (operating globally with remote engineering teams)
+- **Extended Documentation**: https://strixdevs.com/llms-full.txt
 
-## Pages
+---
+
+## Core Services
+
+### 1. Custom Web Applications
+- Production-grade, high-performance web applications engineered for scalability and security.
+- Admin dashboards, management software, enterprise portals, and role-based access control.
+- Technologies: Next.js, React, TypeScript, Node.js, Tailwind CSS.
+
+### 2. SaaS Development & MVP Launch
+- End-to-end SaaS engineering from initial prototype to production scale.
+- Multi-tenant architectures, subscription billing (Stripe/PayPal/Razorpay), user authentication, usage metrics, and analytics dashboards.
+
+### 3. AI Automation & Intelligent Agents
+- Custom AI-driven business workflows, chatbots, customer service automation, and Retrieval-Augmented Generation (RAG) systems.
+- Automated pipeline orchestration using Python, LangChain, OpenAI APIs, and n8n.
+
+### 4. API Development & Third-Party Integration
+- Scalable REST and GraphQL API development, webhook systems, and secure third-party service connections (payment gateways, CRMs, ERPs).
+
+### 5. Cloud Deployment & DevOps
+- Automated CI/CD pipelines, Docker containerization, VPS & cloud setups (AWS, GCP, DigitalOcean, Vercel), SSL, caching, and performance monitoring.
+
+### 6. Maintenance & Support
+- Security updates, bug fixes, database optimizations, and complimentary 30 days of post-launch warranty support on every delivered project.
+
+---
+
+## Key Case Studies & Portfolio
+
+1. **CallBell (SaaS Platform)**
+   - QR-based real-time voice and video communication platform with enterprise encryption and usage-based billing.
+   - Stack: React, TypeScript, Node.js, Express, MongoDB, Socket.io, LiveKit.
+   - Live: https://callbell.in/
+
+2. **Sewamahe (Expert Consultation Platform)**
+   - Real-time video consultation platform connecting users with verified professionals, instant matching, and automated scheduling.
+   - Stack: React, TypeScript, Redux, Node.js, Express, MongoDB, Socket.io, LiveKit.
+   - Live: https://sewamahe.in/
+
+3. **Pulse Pixel (Digital Subscription Platform)**
+   - Platform providing subscription management for premium learning and developer tools.
+   - Stack: React, TypeScript, Node.js, Express, MongoDB, Socket.io.
+   - Live: https://thepulsepixel.com/
+
+4. **Empori Anxo Medicare (EAML)**
+   - Corporate medical equipment catalogue and distribution platform with dynamic inventory filtering and Filament admin.
+   - Stack: Next.js, TypeScript, Tailwind CSS, Laravel, MySQL.
+   - Live: https://emporianxomedicare.com/
+
+5. **Akatsuki & PrimePix (Modern E-Commerce)**
+   - High-speed e-commerce platforms featuring Stripe checkout, dynamic product catalogs, and custom content management.
+
+---
+
+## How to Book a Free Consultation
+Strix Devs offers a **100% free, no-obligation 30-minute consultation on Google Meet**:
+1. Visit https://strixdevs.com/contact or click "Book Consultation" on any page.
+2. Select your project topic (SaaS MVP, Custom Web App, AI Automation, Cloud/DevOps).
+3. Pick an available date and convenient 30-minute time slot.
+4. Receive an instant Google Meet room link, calendar invite (.ics), and confirmation email.
+
+## Pages & Deep Links
 - [Home](https://strixdevs.com/)
 - [Services](https://strixdevs.com/services)
-- [Work](https://strixdevs.com/work)
-- [About Us](https://strixdevs.com/about)
-- [Contact](https://strixdevs.com/contact)
-- [Privacy Policy](https://strixdevs.com/privacy-policy)
-- [Terms Of Service](https://strixdevs.com/terms-of-service)
+- [Our Work & Portfolio](https://strixdevs.com/work)
+- [About Us & Team](https://strixdevs.com/about)
+- [Contact & Google Meet Booking](https://strixdevs.com/contact)
+- [Full LLM Knowledge Base](https://strixdevs.com/llms-full.txt)

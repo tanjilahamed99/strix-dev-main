@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import type { LegalDocumentData } from "~/types/legal";
 import LegalSectionBlock from "./Legalsectionblock";
@@ -8,7 +10,7 @@ interface LegalDocumentProps {
 
 const LegalDocument = ({ data }: LegalDocumentProps) => {
     return (
-        <main className="pt-32 pb-20">
+        <div className="pt-32 pb-20">
             <div className="container mx-auto px-6 max-w-4xl">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
@@ -51,7 +53,7 @@ const LegalDocument = ({ data }: LegalDocumentProps) => {
                     ))}
                 </motion.div>
             </div>
-        </main>
+        </div>
     );
 };
 

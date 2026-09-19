@@ -1,9 +1,17 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { Github, Linkedin, Twitter, Instagram, Facebook } from "lucide-react";
-import { Link } from "react-router";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const Footer = () => {
+    const pathname = usePathname();
     const currentYear = new Date().getFullYear();
+
+    if (pathname?.startsWith("/admin")) {
+        return null;
+    }
 
     const socialLinks = [
         {
@@ -70,7 +78,7 @@ const Footer = () => {
             { name: "About Us", href: "/about" },
             { name: "Services", href: "/services" },
             { name: "Our Work", href: "/work" },
-            { name: "Contact", href: "/contact" },
+            { name: "Contact & Consultation", href: "/contact" },
         ],
     };
 
@@ -94,7 +102,7 @@ const Footer = () => {
                             {/* Logo */}
                             <img
                                 src="/images/icon1.png"
-                                className="w-14"
+                                className="w-12 h-12 object-contain"
                                 loading="lazy"
                                 alt="Strix Devs Logo"
                             />
@@ -107,8 +115,8 @@ const Footer = () => {
                         </motion.div>
                         <p className="text-muted-foreground text-sm max-w-md mb-8 leading-relaxed">
                             Smart, secure, and scalable web applications for
-                            startups and small businesses. Transform your ideas
-                            into powerful digital experiences.
+                            startups and growing businesses. Book a free consultation
+                            to transform your ideas into powerful digital experiences.
                         </p>
 
                         {/* Social links */}
@@ -132,16 +140,16 @@ const Footer = () => {
                     {/* Links columns */}
                     {Object.entries(footerLinks).map(([title, links]) => (
                         <div key={title}>
-                            <h6 className="text-xs  uppercase tracking-[0.2em] text-muted-foreground mb-6">
+                            <h6 className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-6">
                                 {title}
                             </h6>
                             <ul className="space-y-4">
                                 {links.map((link) => (
                                     <li
                                         key={link.name}
-                                        className=" relative w-fit text-sm text-foreground/70 hover:text-foreground transition-colors link-underline"
+                                        className="relative w-fit text-sm text-foreground/70 hover:text-foreground transition-colors link-underline"
                                     >
-                                        <Link to={link.href}>{link.name}</Link>
+                                        <Link href={link.href}>{link.name}</Link>
                                     </li>
                                 ))}
                             </ul>
@@ -152,19 +160,26 @@ const Footer = () => {
                 {/* Bottom bar */}
                 <div className="pt-10 border-t border-border">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-                        <p className="text-xs  text-muted-foreground">
+                        <p className="text-xs text-muted-foreground">
                             © {currentYear} Strix Devs. All rights reserved.
                         </p>
-                        <div className="flex gap-8">
+                        <div className="flex flex-wrap gap-6 items-center">
                             <Link
-                                to="/privacy-policy"
-                                className="text-xs  text-muted-foreground hover:text-foreground transition-colors"
+                                href="/llms.txt"
+                                target="_blank"
+                                className="text-xs text-muted-foreground hover:text-foreground transition-colors font-mono"
+                            >
+                                llms.txt (AI Knowledge)
+                            </Link>
+                            <Link
+                                href="/privacy-policy"
+                                className="text-xs text-muted-foreground hover:text-foreground transition-colors"
                             >
                                 Privacy Policy
                             </Link>
                             <Link
-                                to="/terms-of-service"
-                                className="text-xs  text-muted-foreground hover:text-foreground transition-colors"
+                                href="/terms-of-service"
+                                className="text-xs text-muted-foreground hover:text-foreground transition-colors"
                             >
                                 Terms of Service
                             </Link>

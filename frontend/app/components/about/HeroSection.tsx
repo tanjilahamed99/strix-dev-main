@@ -1,4 +1,6 @@
-import { Link } from 'react-router';
+"use client";
+
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 const HeroSection = () => {
@@ -15,18 +17,18 @@ const HeroSection = () => {
                 >
                     <div className="flex items-center gap-4 mb-6">
                         <Link
-                            to="/"
-                            className="text-xs  uppercase tracking-[0.3em] text-muted-foreground hover:text-foreground transition-colors"
+                            href="/"
+                            className="text-xs uppercase tracking-[0.3em] text-muted-foreground hover:text-foreground transition-colors"
                         >
                             Home
                         </Link>
                         <div className="w-8 h-px bg-foreground/30" />
-                        <span className="text-xs  uppercase tracking-[0.3em] text-foreground">
+                        <span className="text-xs uppercase tracking-[0.3em] text-foreground">
                             About
                         </span>
                     </div>
 
-                    <h1 className="text-5xl md:text-6xl lg:text-8xl  tracking-tight mb-8">
+                    <h1 className="text-5xl md:text-6xl lg:text-8xl tracking-tight mb-8">
                         About Us
                     </h1>
 
@@ -38,11 +40,11 @@ const HeroSection = () => {
                                     DEVS
                                 </span>
                             </strong>{" "}
-                            is a modern web development agency helping startups,
+                            is a modern software and web development agency helping startups,
                             businesses, and entrepreneurs build fast, secure,
                             and scalable digital products. We specialize in
                             custom web applications, SaaS platforms, business
-                            websites, dashboards, APIs, and AI-powered
+                            dashboards, APIs, and AI-powered
                             automation solutions that drive real business
                             growth.
                         </p>

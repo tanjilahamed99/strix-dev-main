@@ -1,5 +1,7 @@
+"use client";
+
 import { motion } from "framer-motion";
-import { Link } from "react-router";
+import Link from "next/link";
 
 const HeroSection = () => {
     return (
@@ -15,25 +17,26 @@ const HeroSection = () => {
                 >
                     <div className="flex items-center gap-4 mb-6">
                         <Link
-                            to="/"
-                            className="text-xs  uppercase tracking-[0.3em] text-muted-foreground hover:text-foreground transition-colors"
+                            href="/"
+                            className="text-xs uppercase tracking-[0.3em] text-muted-foreground hover:text-foreground transition-colors"
                         >
                             Home
                         </Link>
                         <div className="w-8 h-px bg-foreground/30" />
-                        <span className="text-xs  uppercase tracking-[0.3em] text-foreground">
+                        <span className="text-xs uppercase tracking-[0.3em] text-foreground">
                             Contact
                         </span>
                     </div>
 
-                    <h1 className="text-5xl md:text-6xl lg:text-8xl  tracking-tight mb-8">
+                    <h1 className="text-5xl md:text-6xl lg:text-8xl tracking-tight mb-8">
                         Let's Talk
                     </h1>
 
-                    <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
-                        Have a project in mind? We'd love to hear about it. Send
-                        us a message and we'll get back to you within 24 hours.
-                    </p>
+                    <div className="max-w-3xl">
+                        <p className="text-xl text-muted-foreground leading-relaxed">
+                            Have a project in mind or want expert advice on architecture and AI? Send us a message below and our engineering team will get back to you within 24 hours.
+                        </p>
+                    </div>
                 </motion.div>
             </div>
         </section>

@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { motion, useSpring } from "framer-motion";
 
@@ -6,12 +8,27 @@ const CustomCursor = () => {
     const [isHovering, setIsHovering] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [isClicking, setIsClicking] = useState(false);
+    const [isEnabled, setIsEnabled] = useState(false);
 
     const springConfig = { damping: 30, stiffness: 500 };
     const cursorX = useSpring(0, springConfig);
     const cursorY = useSpring(0, springConfig);
 
     useEffect(() => {
+        const checkCapability = () => {
+            if (typeof window === "undefined") return false;
+            const hasFinePointer = window.matchMedia(
+                "(hover: hover) and (pointer: fine)"
+            ).matches;
+            const isDesktopWidth = window.innerWidth >= 768;
+            return hasFinePointer && isDesktopWidth;
+        };
+
+        const enabled = checkCapability();
+        setIsEnabled(enabled);
+
+        if (!enabled) return;
+
         const handleMouseMove = (e: MouseEvent) => {
             setMousePosition({ x: e.clientX, y: e.clientY });
             cursorX.set(e.clientX);
@@ -39,6 +56,14 @@ const CustomCursor = () => {
 
         const handleHoverEnd = () => setIsHovering(false);
 
+        const mql = window.matchMedia("(hover: hover) and (pointer: fine)");
+        const handleResize = () => {
+            const newEnabled = checkCapability();
+            setIsEnabled(newEnabled);
+        };
+
+        mql.addEventListener("change", handleResize);
+        window.addEventListener("resize", handleResize);
         window.addEventListener("mousemove", handleMouseMove);
         window.addEventListener("mouseenter", handleMouseEnter);
         window.addEventListener("mouseleave", handleMouseLeave);
@@ -48,6 +73,8 @@ const CustomCursor = () => {
         document.addEventListener("mouseout", handleHoverEnd);
 
         return () => {
+            mql.removeEventListener("change", handleResize);
+            window.removeEventListener("resize", handleResize);
             window.removeEventListener("mousemove", handleMouseMove);
             window.removeEventListener("mouseenter", handleMouseEnter);
             window.removeEventListener("mouseleave", handleMouseLeave);
@@ -58,8 +85,8 @@ const CustomCursor = () => {
         };
     }, [cursorX, cursorY, isVisible]);
 
-    // Hide custom cursor on touch devices
-    if (typeof window !== "undefined" && "ontouchstart" in window) {
+    // On mobile, tablet, or touch-first devices, do not render the custom cursor
+    if (!isEnabled) {
         return null;
     }
 

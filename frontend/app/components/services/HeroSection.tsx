@@ -1,5 +1,7 @@
+"use client";
+
 import { motion } from "framer-motion";
-import { Link } from "react-router";
+import Link from "next/link";
 
 const HeroSection = () => {
     return (
@@ -15,25 +17,23 @@ const HeroSection = () => {
                 >
                     <div className="flex items-center gap-4 mb-6">
                         <Link
-                            to="/"
-                            className="text-xs  uppercase tracking-[0.3em] text-muted-foreground hover:text-foreground transition-colors"
+                            href="/"
+                            className="text-xs uppercase tracking-[0.3em] text-muted-foreground hover:text-foreground transition-colors"
                         >
                             Home
                         </Link>
                         <div className="w-8 h-px bg-foreground/30" />
-                        <span className="text-xs  uppercase tracking-[0.3em] text-foreground">
+                        <span className="text-xs uppercase tracking-[0.3em] text-foreground">
                             Services
                         </span>
                     </div>
 
-                    <h1 className="text-5xl md:text-6xl lg:text-8xl  tracking-tight mb-8">
+                    <h1 className="text-5xl md:text-6xl lg:text-8xl tracking-tight mb-8">
                         Our Services
                     </h1>
 
                     <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
-                        Comprehensive web development solutions tailored to your
-                        business needs. From concept to deployment, we've got
-                        you covered.
+                        Comprehensive web development, SaaS architecture, and AI automation solutions engineered for scalable performance and business growth.
                     </p>
                 </motion.div>
             </div>
