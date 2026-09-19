@@ -1,9 +1,9 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+"use client";
+
+import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { ArrowUpRight } from "lucide-react";
 import { projects } from "~/Data/data";
-import { Link } from "react-router";
+import Link from "next/link";
 import ProjectCard from "../ProjectCard";
 import Header from "../Header";
 
@@ -22,10 +22,10 @@ const PortfolioSection = () => {
                 {/* Section header */}
                 <Header
                     tag="02"
-                    label="Start a Project"
-                    titleLine1="Let's Build"
-                    titleLine2="Together"
-                    desc="Tell us what you're working on. We'll respond within 24 hours with a clear plan forward."
+                    label="Selected Work"
+                    titleLine1="Featured"
+                    titleLine2="Projects"
+                    desc="A selection of high-performance web applications, SaaS platforms, and digital solutions engineered by Strix Devs."
                 />
 
                 {/* Projects grid */}
@@ -51,8 +51,8 @@ const PortfolioSection = () => {
                     transition={{ delay: 0.4, duration: 0.6 }}
                     className="text-center my-20"
                 >
-                    <Link to={"/work"} className="btn-outline">
-                        View All Projects
+                    <Link href="/work" className="btn-outline">
+                        View All Case Studies & Work
                     </Link>
                 </motion.div>
             </div>

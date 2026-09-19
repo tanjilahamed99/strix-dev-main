@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { ArrowDownRight } from "lucide-react";
 import Header from "../Header";

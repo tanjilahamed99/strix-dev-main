@@ -56,7 +56,13 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-family: 'Outfit',system-ui, sans-serif;
-    cursor: none;
+    cursor: default;
+  }
+
+  @media (hover: hover) and (pointer: fine) and (min-width: 768px) {
+    body {
+      cursor: none;
+    }
   }
 
   ::selection {

@@ -1,8 +1,35 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { Link } from "react-router";
+import Link from "next/link";
 
-const ProjectCard = ({ project, index, isInView, hoveredIndex, setHoveredIndex }) => {
+export interface ProjectItem {
+    title: string;
+    category: string;
+    description: string;
+    techStack: string[];
+    image: string;
+    year: string;
+    link: string;
+    client?: string;
+}
+
+interface ProjectCardProps {
+    project: ProjectItem;
+    index: number;
+    isInView: boolean;
+    hoveredIndex: number | null;
+    setHoveredIndex: (index: number | null) => void;
+}
+
+const ProjectCard = ({
+    project,
+    index,
+    isInView,
+    hoveredIndex,
+    setHoveredIndex,
+}: ProjectCardProps) => {
     return (
         <motion.div
             key={project.title}
@@ -21,12 +48,14 @@ const ProjectCard = ({ project, index, isInView, hoveredIndex, setHoveredIndex }
         >
             {/* Image */}
             <div
-                className={`relative overflow-hidden ${index % 2 === 1 ? "lg:col-start-2" : ""}`}
+                className={`relative overflow-hidden ${
+                    index % 2 === 1 ? "lg:col-start-2" : ""
+                }`}
             >
                 <div className="relative overflow-hidden">
                     <motion.img
                         src={project.image}
-                        alt={project.title}
+                        alt={`${project.title} - ${project.category} by Strix Devs`}
                         loading="lazy"
                         className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
                         animate={{
@@ -53,18 +82,18 @@ const ProjectCard = ({ project, index, isInView, hoveredIndex, setHoveredIndex }
                 }
             >
                 <div className="flex items-center gap-4 mb-4">
-                    <span className="text-xs  text-muted-foreground">
+                    <span className="text-xs text-muted-foreground">
                         {project.year}
                     </span>
                     <div className="w-8 h-px bg-foreground/30" />
-                    <span className="text-xs  uppercase tracking-wider text-muted-foreground">
+                    <span className="text-xs uppercase tracking-wider text-muted-foreground">
                         {project.category}
                     </span>
                 </div>
 
-                <h1 className="text-3xl md:text-4xl lg:text-5xl tracking-tight mb-4 group-hover:translate-x-2 transition-transform duration-500">
+                <h3 className="text-3xl md:text-4xl lg:text-5xl tracking-tight mb-4 group-hover:translate-x-2 transition-transform duration-500">
                     {project.title}
-                </h1>
+                </h3>
 
                 <p className="text-muted-foreground mb-8 max-w-md leading-relaxed">
                     {project.description}
@@ -74,20 +103,25 @@ const ProjectCard = ({ project, index, isInView, hoveredIndex, setHoveredIndex }
                     {project.techStack.map((tech: string) => (
                         <span
                             key={tech}
-                            className="px-3 py-1 text-xs  uppercase tracking-wider border border-border"
+                            className="px-3 py-1 text-xs uppercase tracking-wider border border-border"
                         >
                             {tech}
                         </span>
                     ))}
                 </div>
-                <Link to={project.link} target="_blank" rel="noopener noreferrer">
-                    <motion.button
+                <Link
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`View live site for ${project.title}`}
+                >
+                    <motion.span
                         whileHover={{ x: 5 }}
-                        className="flex items-center gap-3 text-sm  uppercase tracking-wider group/btn"
-                        >
-                        <span className="link-underline">Live Link</span>
+                        className="inline-flex items-center gap-3 text-sm uppercase tracking-wider group/btn cursor-pointer"
+                    >
+                        <span className="link-underline">Live Preview</span>
                         <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
-                    </motion.button>
+                    </motion.span>
                 </Link>
             </div>
         </motion.div>

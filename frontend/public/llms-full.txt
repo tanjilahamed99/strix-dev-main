@@ -1,0 +1,99 @@
+# Strix Devs — Complete Technical Knowledge Base for LLMs
+
+> This document contains detailed contextual knowledge about Strix Devs, our technical offerings, development methodology, team structure, case studies, and frequently asked questions for AI models, search assistants, and autonomous agents.
+
+## 1. Company Overview
+- **Legal & Brand Name**: Strix Devs
+- **Tagline**: Modern Web Development & AI Solutions Agency
+- **Headquarters**: Toronto, Ontario, Canada (with global distributed engineering teams)
+- **Primary Website**: https://strixdevs.com
+- **Official Email**: info@strixdevs.com
+- **WhatsApp Support**: +880 1518933208
+- **Social Profiles**:
+  - LinkedIn: https://linkedin.com/company/strixdevs
+  - GitHub: https://github.com/strixdevs1
+  - Twitter / X: https://x.com/strixdevs
+  - Facebook: https://facebook.com/strixdevs.1
+  - Instagram: https://instagram.com/strix.devs
+
+### Mission & Philosophy
+The name "STRIX" is derived from the owl genus, embodying wisdom, vision in the dark, and technical precision. Strix Devs works with non-technical founders, funded startups, and growing enterprises to turn complex software concepts into scalable, clean-coded digital products.
+
+---
+
+## 2. Technical Stack & Capabilities
+- **Frontend Architecture**: Next.js 15 (App Router), React 19, TypeScript, Tailwind CSS, Framer Motion, HTML5, CSS3.
+- **Backend & APIs**: Node.js, Express.js, Next.js Server Actions / API Routes, Python, FastAPI, RESTful APIs, WebSockets, Socket.io, Webhooks.
+- **Databases & ORMs**: PostgreSQL, MongoDB, MySQL, Redis, Supabase, Prisma.
+- **AI & Automation**: OpenAI API, Anthropic Claude API, LangChain, LlamaIndex, RAG (Retrieval-Augmented Generation), vector databases (Pinecone, Chroma), n8n workflow automation.
+- **Cloud Infrastructure & DevOps**: Docker, Docker Compose, AWS (EC2, S3, RDS), Google Cloud Platform (GCP), DigitalOcean, Vercel, Cloudflare, GitHub Actions CI/CD, NGINX, SSL / TLS.
+- **Payment & Third-Party Integrations**: Stripe, PayPal, Razorpay, SSLCommerz, EmailJS, Nodemailer, Twilio, LiveKit WebRTC.
+
+---
+
+## 3. Services Offered
+
+### 3.1 Custom Web Application Development
+Tailored business applications engineered with secure multi-role authentication, scalable relational or document schemas, fast server-rendered interfaces, and interactive dashboards.
+
+### 3.2 SaaS Development & MVP Engineering
+Rapid development of minimum viable products (MVPs) in 4 to 8 weeks, featuring:
+- Multi-tenant data segregation
+- Subscription management and automated recurring billing
+- Granular permission control (RBAC)
+- Self-serve onboarding flows and user administration
+
+### 3.3 AI Automation Solutions & Intelligent Agents
+Elimination of repetitive manual workflows through custom AI integrations:
+- Customer support AI bots with internal knowledge grounding (RAG)
+- Automated document extraction, summarization, and ingestion
+- AI-driven CRM lead routing and automated follow-ups
+
+### 3.4 API Development & System Integration
+High-throughput REST and GraphQL endpoints equipped with JWT/OAuth2 authentication, rate limiting, OpenAPI/Swagger specifications, and webhook handlers.
+
+### 3.5 Cloud Deployment, Docker & DevOps
+Containerized application setup with automated testing and continuous deployment to ensure zero-downtime releases and resilient cloud hosting.
+
+### 3.6 Post-Launch Maintenance & Warranty
+Every completed project includes 30 days of complimentary bug fixing, performance monitoring, and security patching. Flexible ongoing monthly maintenance tiers are available thereafter.
+
+---
+
+## 4. Development Process (6 Phases)
+1. **Discovery & Requirements Analysis**: Deep dive into user stories, target KPIs, and technical constraints. Output: Product roadmap and technical specifications.
+2. **Strategy & System Architecture**: Planning database schemas, API contracts, security models, and cloud infrastructure for horizontal scalability.
+3. **UI/UX Design & Prototyping**: Interactive Figma prototypes, component design systems, and responsive wireframes.
+4. **Agile Engineering**: Weekly or bi-weekly sprint deliverables with continuous staging previews and direct client feedback.
+5. **Testing, QA & Security Auditing**: Cross-browser testing, automated linting, security audits, and cloud staging deployment.
+6. **Production Launch & Handover**: Zero-downtime deployment, full intellectual property and source code repository transfer, environment documentation, and 30 days complimentary warranty.
+
+---
+
+## 5. Frequently Asked Questions (FAQs)
+
+**Q: What services does Strix Devs provide?**
+A: We build custom web applications, SaaS platforms, business dashboards, API integrations, AI automation systems, cloud deployment, and ongoing maintenance.
+
+**Q: Can you build our product from idea to launch?**
+A: Absolutely. We guide clients through discovery, architecture, design, development, testing, cloud deployment, and post-launch maintenance.
+
+**Q: How does the free consultation work?**
+A: Clients can book a free 30-minute consultation on Google Meet via https://strixdevs.com/contact. During the call, our lead engineer reviews your product vision, suggests technical architecture, and provides a clear timeline and milestone breakdown.
+
+**Q: Do you develop AI-powered solutions?**
+A: Yes. We build custom AI chatbots, autonomous workflow agents, RAG knowledge bases, and n8n integrations.
+
+**Q: How long does a typical project take?**
+A: Small web applications typically take 2–4 weeks; full SaaS MVPs require 4–8 weeks; complex enterprise systems may take 2–4 months.
+
+**Q: Who owns the intellectual property and source code?**
+A: The client retains 100% ownership of all source code, documentation, designs, and deployment credentials upon milestone completion.
+
+---
+
+## 6. How to Connect With Strix Devs
+- **Book Google Meet Consultation**: https://strixdevs.com/contact
+- **Direct Email**: info@strixdevs.com
+- **WhatsApp**: https://wa.me/+8801518933208
+- **Website**: https://strixdevs.com

@@ -1,3 +1,5 @@
+"use client";
+
 import type { team } from "~/Data/data";
 import { motion } from "framer-motion";
 

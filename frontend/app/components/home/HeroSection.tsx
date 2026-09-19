@@ -1,6 +1,8 @@
+"use client";
+
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { ArrowDownRight } from "lucide-react";
+import { ArrowDownRight, ArrowRight } from "lucide-react";
 import Header from "../Header";
 
 const HeroSection = () => {
@@ -161,10 +163,10 @@ const HeroSection = () => {
                                 }}
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
-                                className="btn-primary flex items-center gap-3"
+                                className="btn-primary flex items-center justify-center gap-3 py-3.5 px-6 shadow-[0_0_25px_rgba(255,255,255,0.25)] hover:shadow-[0_0_35px_rgba(255,255,255,0.4)] transition-shadow"
                             >
-                                <span>Start Project</span>
-                                <ArrowDownRight className="w-4 h-4" />
+                                <span>Get in Touch</span>
+                                <ArrowRight className="w-4 h-4" />
                             </motion.a>
                             <motion.a
                                 href="#work"
@@ -178,9 +180,10 @@ const HeroSection = () => {
                                 }}
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
-                                className="btn-outline flex items-center justify-center gap-3"
+                                className="btn-outline flex items-center justify-center gap-3 py-3.5 px-6"
                             >
-                                View Work
+                                <span>View Work</span>
+                                <ArrowDownRight className="w-4 h-4" />
                             </motion.a>
                         </div>
                     </motion.div>

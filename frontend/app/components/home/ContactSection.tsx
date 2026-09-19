@@ -1,9 +1,11 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Check, Video, Calendar, Shield } from "lucide-react";
 import { contactInfo } from "~/Data/data";
-import { SendEmail } from "~/lib/email";
 import Header from "../Header";
+import { openConsultationModal } from "../BookConsultationModal";
 
 const ContactSection = () => {
     const [formData, setFormData] = useState({
@@ -13,33 +15,49 @@ const ContactSection = () => {
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [error, setError] = useState("");
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
+        setError("");
+
         try {
-            await SendEmail(formData);
+            const res = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    type: "inquiry",
+                    name: formData.name,
+                    email: formData.email,
+                    message: formData.message,
+                }),
+            });
+
+            const data = await res.json();
+            if (!res.ok) {
+                throw new Error(data.error || "Failed to send message.");
+            }
+
             setFormData({
                 name: "",
                 email: "",
                 message: "",
             });
-            setIsSubmitted(false)
-        } catch (error) {
-            console.error("EmailJS error:", error);
-            alert("Failed to send message. Please try again.");
+            setIsSubmitted(true);
+        } catch (err) {
+            console.error("Contact send error:", err);
+            setError(err instanceof Error ? err.message : "Failed to send message. Please try again.");
         } finally {
             setIsSubmitting(false);
         }
     };
 
     const handleChange = (
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
     ) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
-
-
 
     return (
         <section
@@ -55,10 +73,38 @@ const ContactSection = () => {
                 <Header
                     titleLine1="Let's Build"
                     titleLine2="Something Great"
-                    as="h1"
+                    as="h2"
                     tag="05"
-                    label="Contact"
+                    label="Contact & Consultation"
                 />
+
+                {/* Free Consultation Banner */}
+                <div className="mb-14 p-6 rounded-xl border border-emerald-500/30 bg-emerald-950/20 backdrop-blur-sm flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center shrink-0">
+                            <Video className="w-6 h-6" />
+                        </div>
+                        <div>
+                            <h4 className="text-base font-semibold text-foreground flex items-center gap-2">
+                                Want to talk directly? Book a Free Consultation
+                                <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded">
+                                    Google Meet
+                                </span>
+                            </h4>
+                            <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
+                                30 minutes of dedicated architecture & strategy advice with our lead engineer.
+                            </p>
+                        </div>
+                    </div>
+                    <button
+                        type="button"
+                        onClick={() => openConsultationModal()}
+                        className="btn-primary flex items-center gap-2 whitespace-nowrap text-xs py-3 px-5 shadow-[0_0_20px_rgba(52,211,153,0.3)] hover:shadow-[0_0_30px_rgba(52,211,153,0.5)] transition-shadow"
+                    >
+                        <Calendar className="w-4 h-4 text-emerald-600" />
+                        <span>Schedule Appointment</span>
+                    </button>
+                </div>
 
                 <div className="grid lg:grid-cols-2 gap-20">
                     {/* Contact form */}
@@ -72,62 +118,68 @@ const ContactSection = () => {
                             {/* Name field */}
                             <div>
                                 <label
-                                    htmlFor="name"
-                                    className="block text-xs  uppercase tracking-[0.2em] text-muted-foreground mb-3"
+                                    htmlFor="home-name"
+                                    className="block text-xs uppercase tracking-[0.2em] text-muted-foreground mb-3"
                                 >
-                                    Your Name
+                                    Your Name *
                                 </label>
                                 <input
                                     type="text"
-                                    id="name"
+                                    id="home-name"
                                     name="name"
                                     value={formData.name}
                                     onChange={handleChange}
                                     required
                                     className="w-full px-0 py-4 bg-transparent border-0 border-b border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground transition-colors duration-300 text-lg"
-                                    placeholder="John Doe"
+                                    placeholder="Alex Morgan"
                                 />
                             </div>
 
                             {/* Email field */}
                             <div>
                                 <label
-                                    htmlFor="email"
-                                    className="block text-xs  uppercase tracking-[0.2em] text-muted-foreground mb-3"
+                                    htmlFor="home-email"
+                                    className="block text-xs uppercase tracking-[0.2em] text-muted-foreground mb-3"
                                 >
-                                    Email Address
+                                    Email Address *
                                 </label>
                                 <input
                                     type="email"
-                                    id="email"
+                                    id="home-email"
                                     name="email"
                                     value={formData.email}
                                     onChange={handleChange}
                                     required
                                     className="w-full px-0 py-4 bg-transparent border-0 border-b border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground transition-colors duration-300 text-lg"
-                                    placeholder="john@example.com"
+                                    placeholder="alex@example.com"
                                 />
                             </div>
 
                             {/* Message field */}
                             <div>
                                 <label
-                                    htmlFor="message"
-                                    className="block text-xs  uppercase tracking-[0.2em] text-muted-foreground mb-3"
+                                    htmlFor="home-message"
+                                    className="block text-xs uppercase tracking-[0.2em] text-muted-foreground mb-3"
                                 >
-                                    Your Message
+                                    Your Message *
                                 </label>
                                 <textarea
-                                    id="message"
+                                    id="home-message"
                                     name="message"
                                     value={formData.message}
                                     onChange={handleChange}
                                     required
                                     rows={4}
                                     className="w-full px-0 py-4 bg-transparent border-0 border-b border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground transition-colors duration-300 resize-none text-lg"
-                                    placeholder="Tell us about your project..."
+                                    placeholder="Tell us about your project, goals, or timeline..."
                                 />
                             </div>
+
+                            {error && (
+                                <p className="text-xs text-red-400 bg-red-950/40 p-3 rounded border border-red-800/50">
+                                    {error}
+                                </p>
+                            )}
 
                             {/* Submit button */}
                             <motion.button
@@ -139,15 +191,24 @@ const ContactSection = () => {
                             >
                                 <span>
                                     {isSubmitting
-                                        ? "Sending..."
+                                        ? "Sending Message..."
                                         : isSubmitted
-                                          ? "Message Sent!"
-                                          : "Start Your Project"}
+                                        ? "Message Sent!"
+                                        : "Start Your Project"}
                                 </span>
                                 {!isSubmitting && !isSubmitted && (
                                     <ArrowUpRight className="w-4 h-4" />
                                 )}
+                                {isSubmitted && (
+                                    <Check className="w-4 h-4" />
+                                )}
                             </motion.button>
+
+                            {isSubmitted && (
+                                <p className="text-xs text-emerald-400 bg-emerald-950/40 p-3 rounded border border-emerald-800/50">
+                                    ✓ Thank you! We received your message and sent a confirmation email to {formData.email || "your email"}. We'll follow up within 24 hours.
+                                </p>
+                            )}
                         </form>
                     </motion.div>
 
@@ -196,7 +257,7 @@ const ContactSection = () => {
                                         <link.icon className="w-5 h-5 text-foreground group-hover:text-background transition-colors duration-300" />
                                     </div>
                                     <div className="flex-1">
-                                        <div className="text-xs  uppercase tracking-[0.2em] text-muted-foreground mb-1">
+                                        <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-1">
                                             {link.label}
                                         </div>
                                         <div className="text-lg group-hover:translate-x-2 transition-transform duration-300">
@@ -210,13 +271,13 @@ const ContactSection = () => {
 
                         {/* Business hours */}
                         <div className="pt-10">
-                            <h6 className="text-xs  uppercase tracking-[0.2em] text-muted-foreground mb-4">
-                                Business Hours
+                            <h6 className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-4">
+                                Working Hours
                             </h6>
                             <p className="text-muted-foreground">
                                 Monday - Friday: 9:00 AM - 6:00 PM EST
                                 <br />
-                                Weekend availability by appointment
+                                Google Meet Consultations available 7 days a week
                             </p>
                         </div>
                     </motion.div>
