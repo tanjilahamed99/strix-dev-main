@@ -6,7 +6,8 @@ export async function POST(request: Request) {
         const body = await request.json();
         const { password } = body;
 
-        if (!password || !checkAdminPassword(password)) {
+        const isValid = await checkAdminPassword(password);
+        if (!password || !isValid) {
             return NextResponse.json(
                 { error: "Invalid admin password" },
                 { status: 401 }
