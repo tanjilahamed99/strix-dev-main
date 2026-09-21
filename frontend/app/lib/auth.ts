@@ -1,5 +1,7 @@
 import crypto from "crypto";
 import { cookies } from "next/headers";
+import connectToDatabase from "~/lib/db/mongodb";
+import Admin from "~/lib/db/models/Admin";
 
 const COOKIE_NAME = "strix_admin_token";
 const SECRET = process.env.ADMIN_SESSION_SECRET || "strix-devs-secure-admin-secret-2026-key";
@@ -31,12 +33,39 @@ function verifyToken(token: string): boolean {
     return ageMs >= 0 && ageMs < 24 * 60 * 60 * 1000;
 }
 
-export function checkAdminPassword(password: string): boolean {
-    if (typeof password !== "string") return false;
-    const inputBuf = Buffer.from(password);
-    const targetBuf = Buffer.from(DEFAULT_PASSWORD);
-    if (inputBuf.length !== targetBuf.length) return false;
-    return crypto.timingSafeEqual(inputBuf, targetBuf);
+export async function checkAdminPassword(password: string): Promise<boolean> {
+    if (typeof password !== "string" || !password) return false;
+
+    try {
+        await connectToDatabase();
+
+        // 1. If no admin exists in DB yet, auto-create initial admin document so it can be viewed and modified directly in DB
+        const count = await Admin.countDocuments();
+        if (count === 0) {
+            await Admin.create({
+                username: "admin",
+                password: DEFAULT_PASSWORD,
+                role: "superadmin",
+            });
+        }
+
+        // 2. Direct unhashed comparison against DB password
+        const matchingAdmin = await Admin.findOne({ password });
+        if (matchingAdmin) {
+            return true;
+        }
+
+        const defaultAdmin = await Admin.findOne({ username: "admin" });
+        if (defaultAdmin && defaultAdmin.password === password) {
+            return true;
+        }
+
+        return false;
+    } catch (error) {
+        console.error("Admin DB authentication error:", error);
+        // Fallback to environment variable if DB is temporarily unreachable
+        return password === DEFAULT_PASSWORD;
+    }
 }
 
 export async function setAdminSession(response?: any): Promise<string> {
@@ -75,7 +104,7 @@ export async function clearAdminSession(response?: any): Promise<void> {
 export async function isAuthenticatedAdmin(request?: Request): Promise<boolean> {
     if (request) {
         const headerPass = request.headers.get("x-admin-passcode");
-        if (headerPass && checkAdminPassword(headerPass)) {
+        if (headerPass && (await checkAdminPassword(headerPass))) {
             return true;
         }
     }

@@ -96,7 +96,7 @@ export default function BookConsultationModal({
                         if (!phone && data.phone) setPhone(data.phone);
                     }
                 })
-                .catch(() => {});
+                .catch(() => { });
         }
     }, [isOpen]);
 

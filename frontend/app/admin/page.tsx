@@ -15,7 +15,6 @@ import {
     Send,
     ExternalLink,
     Search,
-    ChevronRight,
     AlertCircle,
     RefreshCw,
     Compass,
@@ -29,8 +28,6 @@ import {
     Trash2,
     Laptop,
     Smartphone,
-    Globe,
-    MessageSquare,
     BarChart3,
     Repeat,
     Activity,
@@ -611,11 +608,10 @@ export default function AdminDashboardPage() {
                                     <button
                                         key={tf}
                                         onClick={() => setChartTimeframe(tf)}
-                                        className={`px-2.5 py-1 rounded-md text-[11px] font-semibold transition-all uppercase ${
-                                            chartTimeframe === tf
-                                                ? "bg-foreground text-background shadow-sm"
-                                                : "text-muted-foreground hover:text-foreground"
-                                        }`}
+                                        className={`px-2.5 py-1 rounded-md text-[11px] font-semibold transition-all uppercase ${chartTimeframe === tf
+                                            ? "bg-foreground text-background shadow-sm"
+                                            : "text-muted-foreground hover:text-foreground"
+                                            }`}
                                     >
                                         {tf}
                                     </button>
@@ -811,11 +807,10 @@ export default function AdminDashboardPage() {
                                                 x={centerX}
                                                 y="188"
                                                 textAnchor="middle"
-                                                className={`text-[9px] font-mono transition-colors ${
-                                                    isHovered
-                                                        ? "fill-foreground font-bold"
-                                                        : "fill-muted-foreground"
-                                                }`}
+                                                className={`text-[9px] font-mono transition-colors ${isHovered
+                                                    ? "fill-foreground font-bold"
+                                                    : "fill-muted-foreground"
+                                                    }`}
                                             >
                                                 {chartDaysCount > 14 ? (idx % 2 === 0 ? d.shortLabel : "") : d.shortLabel}
                                             </text>
@@ -855,11 +850,10 @@ export default function AdminDashboardPage() {
                                             cx={cx}
                                             cy={cy}
                                             r={isHovered ? 5 : 3}
-                                            className={`transition-all ${
-                                                isHovered
-                                                    ? "fill-cyan-300 stroke-cyan-500 stroke-2"
-                                                    : "fill-cyan-400"
-                                            }`}
+                                            className={`transition-all ${isHovered
+                                                ? "fill-cyan-300 stroke-cyan-500 stroke-2"
+                                                : "fill-cyan-400"
+                                                }`}
                                         />
                                     );
                                 })}
@@ -892,11 +886,10 @@ export default function AdminDashboardPage() {
                 {/* Feedback Alert */}
                 {feedback && (
                     <div
-                        className={`p-3.5 rounded-xl border text-xs flex items-center justify-between ${
-                            feedback.type === "success"
-                                ? "bg-emerald-950/30 border-emerald-500/30 text-emerald-300"
-                                : "bg-red-950/30 border-red-500/30 text-red-300"
-                        }`}
+                        className={`p-3.5 rounded-xl border text-xs flex items-center justify-between ${feedback.type === "success"
+                            ? "bg-emerald-950/30 border-emerald-500/30 text-emerald-300"
+                            : "bg-red-950/30 border-red-500/30 text-red-300"
+                            }`}
                     >
                         <div className="flex items-center gap-2">
                             {feedback.type === "success" ? (
@@ -916,21 +909,19 @@ export default function AdminDashboardPage() {
                 <div className="flex items-center gap-1.5 border-b border-border/60 pb-2">
                     <button
                         onClick={() => setActiveTab("bookings")}
-                        className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all ${
-                            activeTab === "bookings"
-                                ? "bg-foreground text-background shadow-sm"
-                                : "text-muted-foreground hover:text-foreground hover:bg-card/60"
-                        }`}
+                        className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all ${activeTab === "bookings"
+                            ? "bg-foreground text-background shadow-sm"
+                            : "text-muted-foreground hover:text-foreground hover:bg-card/60"
+                            }`}
                     >
                         <Calendar className="w-3.5 h-3.5" />
                         <span>Consultations</span>
                         {stats.pendingCount > 0 ? (
                             <span
-                                className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
-                                    activeTab === "bookings"
-                                        ? "bg-background text-foreground"
-                                        : "bg-amber-500 text-black animate-pulse"
-                                }`}
+                                className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${activeTab === "bookings"
+                                    ? "bg-background text-foreground"
+                                    : "bg-amber-500 text-black animate-pulse"
+                                    }`}
                             >
                                 {stats.pendingCount}
                             </span>
@@ -943,11 +934,10 @@ export default function AdminDashboardPage() {
 
                     <button
                         onClick={() => setActiveTab("visitors")}
-                        className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all ${
-                            activeTab === "visitors"
-                                ? "bg-foreground text-background shadow-sm"
-                                : "text-muted-foreground hover:text-foreground hover:bg-card/60"
-                        }`}
+                        className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all ${activeTab === "visitors"
+                            ? "bg-foreground text-background shadow-sm"
+                            : "text-muted-foreground hover:text-foreground hover:bg-card/60"
+                            }`}
                     >
                         <Users className="w-3.5 h-3.5" />
                         <span>Visitors & Leads</span>
@@ -958,21 +948,19 @@ export default function AdminDashboardPage() {
 
                     <button
                         onClick={() => setActiveTab("messages")}
-                        className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all ${
-                            activeTab === "messages"
-                                ? "bg-foreground text-background shadow-sm"
-                                : "text-muted-foreground hover:text-foreground hover:bg-card/60"
-                        }`}
+                        className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all ${activeTab === "messages"
+                            ? "bg-foreground text-background shadow-sm"
+                            : "text-muted-foreground hover:text-foreground hover:bg-card/60"
+                            }`}
                     >
                         <Mail className="w-3.5 h-3.5" />
                         <span>Messages</span>
                         {unreadCount > 0 ? (
                             <span
-                                className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
-                                    activeTab === "messages"
-                                        ? "bg-background text-foreground"
-                                        : "bg-emerald-500 text-black animate-pulse"
-                                }`}
+                                className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${activeTab === "messages"
+                                    ? "bg-background text-foreground"
+                                    : "bg-emerald-500 text-black animate-pulse"
+                                    }`}
                             >
                                 {unreadCount} new
                             </span>
@@ -994,11 +982,10 @@ export default function AdminDashboardPage() {
                                     <button
                                         key={status}
                                         onClick={() => setStatusFilter(status)}
-                                        className={`px-3 py-1.5 rounded-lg text-xs font-medium capitalize transition-all ${
-                                            statusFilter === status
-                                                ? "bg-foreground text-background font-semibold shadow-sm"
-                                                : "text-muted-foreground hover:text-foreground"
-                                        }`}
+                                        className={`px-3 py-1.5 rounded-lg text-xs font-medium capitalize transition-all ${statusFilter === status
+                                            ? "bg-foreground text-background font-semibold shadow-sm"
+                                            : "text-muted-foreground hover:text-foreground"
+                                            }`}
                                     >
                                         {status}
                                     </button>
@@ -1065,15 +1052,14 @@ export default function AdminDashboardPage() {
                                                         )}
 
                                                         <span
-                                                            className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded-full ${
-                                                                isPending
-                                                                    ? "bg-amber-500/15 text-amber-300 border border-amber-500/30"
-                                                                    : isConfirmed
+                                                            className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded-full ${isPending
+                                                                ? "bg-amber-500/15 text-amber-300 border border-amber-500/30"
+                                                                : isConfirmed
                                                                     ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/30"
                                                                     : isRejected
-                                                                    ? "bg-red-500/15 text-red-300 border border-red-500/30"
-                                                                    : "bg-muted text-muted-foreground"
-                                                            }`}
+                                                                        ? "bg-red-500/15 text-red-300 border border-red-500/30"
+                                                                        : "bg-muted text-muted-foreground"
+                                                                }`}
                                                         >
                                                             {b.status}
                                                         </span>
@@ -1344,21 +1330,19 @@ export default function AdminDashboardPage() {
                             <div className="flex items-center gap-2 bg-card/60 p-1 rounded-xl border border-border/60 w-fit">
                                 <button
                                     onClick={() => setMessageSubTab("inbox")}
-                                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ${
-                                        messageSubTab === "inbox"
-                                            ? "bg-foreground text-background shadow-sm"
-                                            : "text-muted-foreground hover:text-foreground"
-                                    }`}
+                                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ${messageSubTab === "inbox"
+                                        ? "bg-foreground text-background shadow-sm"
+                                        : "text-muted-foreground hover:text-foreground"
+                                        }`}
                                 >
                                     <Inbox className="w-3.5 h-3.5" />
                                     <span>Inbox</span>
                                     {unreadCount > 0 ? (
                                         <span
-                                            className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
-                                                messageSubTab === "inbox"
-                                                    ? "bg-background text-foreground"
-                                                    : "bg-emerald-500 text-black animate-pulse"
-                                            }`}
+                                            className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${messageSubTab === "inbox"
+                                                ? "bg-background text-foreground"
+                                                : "bg-emerald-500 text-black animate-pulse"
+                                                }`}
                                         >
                                             {unreadCount}
                                         </span>
@@ -1370,11 +1354,10 @@ export default function AdminDashboardPage() {
                                 </button>
                                 <button
                                     onClick={() => setMessageSubTab("outbox")}
-                                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ${
-                                        messageSubTab === "outbox"
-                                            ? "bg-foreground text-background shadow-sm"
-                                            : "text-muted-foreground hover:text-foreground"
-                                    }`}
+                                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ${messageSubTab === "outbox"
+                                        ? "bg-foreground text-background shadow-sm"
+                                        : "text-muted-foreground hover:text-foreground"
+                                        }`}
                                 >
                                     <Send className="w-3.5 h-3.5" />
                                     <span>Outbox</span>
@@ -1419,11 +1402,10 @@ export default function AdminDashboardPage() {
                                             return (
                                                 <div
                                                     key={id}
-                                                    className={`p-4 rounded-xl bg-card/60 backdrop-blur-sm border transition-all space-y-2.5 ${
-                                                        isUnread
-                                                            ? "border-emerald-500/40 shadow-sm shadow-emerald-500/5 bg-emerald-950/10"
-                                                            : "border-border/50"
-                                                    }`}
+                                                    className={`p-4 rounded-xl bg-card/60 backdrop-blur-sm border transition-all space-y-2.5 ${isUnread
+                                                        ? "border-emerald-500/40 shadow-sm shadow-emerald-500/5 bg-emerald-950/10"
+                                                        : "border-border/50"
+                                                        }`}
                                                 >
                                                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                                                         <div className="flex items-center gap-2 flex-wrap">
