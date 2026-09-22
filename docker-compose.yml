@@ -20,8 +20,20 @@
 
 services:
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://strixdevs.com}
+        NEXT_PUBLIC_GOOGLE_MEET_URL: ${NEXT_PUBLIC_GOOGLE_MEET_URL:-https://meet.google.com/tuc-bauo-tgo}
     container_name: strix-dev-frontend
     ports:
       - "3005:3000"
     restart: always
+    env_file:
+      - path: .env
+        required: false
+      - path: ./frontend/.env
+        required: false
+      - path: ./frontend/.env.local
+        required: false
