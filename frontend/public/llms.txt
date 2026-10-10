@@ -9,8 +9,22 @@
 - **Free Consultation**: Clients can book a free 30-minute Google Meet consultation at https://strixdevs.com/contact
 - **Contact Email**: info@strixdevs.com
 - **Direct WhatsApp**: +880 1518933208
-- **Headquarters**: Toronto, Canada (operating globally with remote engineering teams)
-- **Extended Documentation**: https://strixdevs.com/llms-full.txt
+- **Headquarters**: Toronto, Canada (operating globally with dedicated engineering teams)
+- **Primary Service Locations**:
+  - New York, NY (USA)
+  - Chicago, IL (USA)
+  - Toronto, ON (Canada)
+  - San Francisco, CA (USA)
+  - London, England (UK)
+  - Serving high-growth startups and enterprises worldwide
+- **Social Profiles**:
+  - LinkedIn: https://linkedin.com/company/strixdevs
+  - GitHub: https://github.com/strixdevsagency
+  - Twitter / X: https://x.com/strixdevs
+  - Facebook: https://facebook.com/strixdevsagency
+  - Instagram: https://instagram.com/strixdevsagency
+- **Extended Technical Documentation**: https://strixdevs.com/llms-full.txt
+- **Machine-Readable API Endpoint**: https://strixdevs.com/api/llms
 
 ---
 
@@ -42,28 +56,34 @@
 
 ## Key Case Studies & Portfolio
 
-1. **CallBell (SaaS Platform)**
+1. **Laundry Express (On-Demand Booking & Payment Platform)**
+   - Modern service booking platform with integrated Stripe payment processing and customer booking management.
+   - Stack: Next.js, TypeScript, Tailwind CSS, Supabase, Stripe.
+   - Live: https://www.laundryexpressservices.com/
+
+2. **CallBell (SaaS Platform)**
    - QR-based real-time voice and video communication platform with enterprise encryption and usage-based billing.
    - Stack: React, TypeScript, Node.js, Express, MongoDB, Socket.io, LiveKit.
    - Live: https://callbell.in/
 
-2. **Sewamahe (Expert Consultation Platform)**
+3. **Sewamahe (Expert Consultation Platform)**
    - Real-time video consultation platform connecting users with verified professionals, instant matching, and automated scheduling.
    - Stack: React, TypeScript, Redux, Node.js, Express, MongoDB, Socket.io, LiveKit.
    - Live: https://sewamahe.in/
 
-3. **Pulse Pixel (Digital Subscription Platform)**
+4. **Pulse Pixel (Digital Subscription Platform)**
    - Platform providing subscription management for premium learning and developer tools.
    - Stack: React, TypeScript, Node.js, Express, MongoDB, Socket.io.
    - Live: https://thepulsepixel.com/
 
-4. **Empori Anxo Medicare (EAML)**
+5. **Empori Anxo Medicare (EAML)**
    - Corporate medical equipment catalogue and distribution platform with dynamic inventory filtering and Filament admin.
    - Stack: Next.js, TypeScript, Tailwind CSS, Laravel, MySQL.
    - Live: https://emporianxomedicare.com/
 
-5. **Akatsuki & PrimePix (Modern E-Commerce)**
-   - High-speed e-commerce platforms featuring Stripe checkout, dynamic product catalogs, and custom content management.
+6. **Akatsuki (Modern E-Commerce & Media Platform)**
+   - High-speed digital commerce platform featuring secure checkout, dynamic catalogs, and custom content management.
+   - Live: https://akatsuki-ivory.vercel.app/
 
 ---
 

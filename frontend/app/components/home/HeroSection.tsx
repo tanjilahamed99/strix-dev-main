@@ -73,15 +73,16 @@ const HeroSection = () => {
                 />
             </div>
 
-            {/* Floating number */}
-            <motion.h1
+            {/* Floating decorative number */}
+            <motion.div
+                aria-hidden="true"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 0.2 }}
                 transition={{ duration: 1, delay: 1 }}
                 className="absolute right-10 top-1/3 text-[24rem] glow-text leading-none select-none pointer-events-none hidden lg:block"
             >
                 01
-            </motion.h1>
+            </motion.div>
 
             {/* Content */}
             <motion.div
@@ -92,49 +93,51 @@ const HeroSection = () => {
                     {/* Status badge */}
                     <Header label="Available for Projects"/>
 
-                    {/* Main headline - with text reveal effect */}
-                    <div className="overflow-hidden mb-4">
-                        <motion.h1
-                            initial={{ y: 100 }}
-                            animate={{ y: 0 }}
-                            transition={{
-                                duration: 0.8,
-                                delay: 0.2,
-                                ease: [0.4, 0, 0, 1],
-                            }}
-                            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl  leading-[0.9] tracking-tight"
-                        >
-                            WE BUILD
-                        </motion.h1>
-                    </div>
-                    <div className="overflow-hidden mb-4">
-                        <motion.h1
-                            initial={{ y: 100 }}
-                            animate={{ y: 0 }}
-                            transition={{
-                                duration: 0.8,
-                                delay: 0.3,
-                                ease: [0.4, 0, 0, 1],
-                            }}
-                            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl  leading-[0.9] tracking-tight text-outline-thick"
-                        >
-                            DIGITAL
-                        </motion.h1>
-                    </div>
-                    <div className=" mb-8">
-                        <motion.h1
-                            initial={{ y: 100 }}
-                            animate={{ y: 0 }}
-                            transition={{
-                                duration: 0.8,
-                                delay: 0.4,
-                                ease: [0.4, 0, 0, 1],
-                            }}
-                            className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl  leading-[0.9] tracking-tight"
-                        >
-                            EXPERIENCES
-                        </motion.h1>
-                    </div>
+                    {/* Main headline - single semantic h1 with animated line reveals */}
+                    <h1 className="tracking-tight leading-[0.9] mb-8 font-heading">
+                        <span className="block overflow-hidden mb-4">
+                            <motion.span
+                                initial={{ y: 100 }}
+                                animate={{ y: 0 }}
+                                transition={{
+                                    duration: 0.8,
+                                    delay: 0.2,
+                                    ease: [0.4, 0, 0, 1],
+                                }}
+                                className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl font-bold"
+                            >
+                                WE BUILD
+                            </motion.span>
+                        </span>
+                        <span className="block overflow-hidden mb-4">
+                            <motion.span
+                                initial={{ y: 100 }}
+                                animate={{ y: 0 }}
+                                transition={{
+                                    duration: 0.8,
+                                    delay: 0.3,
+                                    ease: [0.4, 0, 0, 1],
+                                }}
+                                className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl text-outline-thick font-bold"
+                            >
+                                DIGITAL
+                            </motion.span>
+                        </span>
+                        <span className="block overflow-hidden">
+                            <motion.span
+                                initial={{ y: 100 }}
+                                animate={{ y: 0 }}
+                                transition={{
+                                    duration: 0.8,
+                                    delay: 0.4,
+                                    ease: [0.4, 0, 0, 1],
+                                }}
+                                className="block text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-bold"
+                            >
+                                EXPERIENCES
+                            </motion.span>
+                        </span>
+                    </h1>
 
                     {/* Subheadline */}
                     <motion.div

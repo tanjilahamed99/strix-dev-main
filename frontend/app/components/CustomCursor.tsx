@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { motion, useSpring } from "framer-motion";
 
 const CustomCursor = () => {
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [isHovering, setIsHovering] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [isClicking, setIsClicking] = useState(false);
@@ -13,6 +12,10 @@ const CustomCursor = () => {
     const springConfig = { damping: 30, stiffness: 500 };
     const cursorX = useSpring(0, springConfig);
     const cursorY = useSpring(0, springConfig);
+
+    const ringConfig = { damping: 25, stiffness: 350 };
+    const ringX = useSpring(0, ringConfig);
+    const ringY = useSpring(0, ringConfig);
 
     useEffect(() => {
         const checkCapability = () => {
@@ -30,9 +33,10 @@ const CustomCursor = () => {
         if (!enabled) return;
 
         const handleMouseMove = (e: MouseEvent) => {
-            setMousePosition({ x: e.clientX, y: e.clientY });
             cursorX.set(e.clientX);
             cursorY.set(e.clientY);
+            ringX.set(e.clientX);
+            ringY.set(e.clientY);
             if (!isVisible) setIsVisible(true);
         };
 
@@ -131,8 +135,8 @@ const CustomCursor = () => {
             <motion.div
                 className="fixed top-0 left-0 pointer-events-none z-9999"
                 style={{
-                    x: mousePosition.x,
-                    y: mousePosition.y,
+                    x: ringX,
+                    y: ringY,
                     translateX: "-50%",
                     translateY: "-50%",
                 }}
@@ -141,8 +145,6 @@ const CustomCursor = () => {
                     opacity: isVisible ? 1 : 0,
                 }}
                 transition={{
-                    x: { duration: 0.08 },
-                    y: { duration: 0.08 },
                     scale: { duration: 0.2 },
                 }}
             >

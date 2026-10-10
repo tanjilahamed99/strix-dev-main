@@ -7,10 +7,11 @@ import ContactSection from "~/components/home/ContactSection";
 import { Process } from "~/components/home/Process";
 import { WhyUs } from "~/components/home/WhyUs";
 import { FAQ } from "~/components/home/FAQ";
-import { faqs } from "~/Data/data";
 
 export const metadata: Metadata = {
-    title: "Strix Devs | Custom Web Applications, SaaS & AI Automation Agency",
+    title: {
+        absolute: "Strix Devs — Full-Stack Web Development, SaaS & AI Automation Agency",
+    },
     description:
         "Strix Devs is a full-stack software development agency specializing in custom web applications, SaaS platforms, and AI automations using Next.js, React, Node.js, and cloud technologies. Book a free 30-minute consultation.",
     alternates: {
@@ -23,38 +24,25 @@ export const metadata: Metadata = {
         url: "https://strixdevs.com/",
         images: [
             {
-                url: "https://i.ibb.co.com/Z189FpgK/strixdevs.png",
+                url: "/images/strixdevs.jpg",
                 width: 1200,
                 height: 630,
                 alt: "Strix Devs Agency",
             },
         ],
     },
+    keywords: [
+        "web development agency New York",
+        "custom software development Chicago",
+        "SaaS development agency Toronto",
+        "AI automation agency San Francisco",
+        "software development company London UK",
+    ],
 };
 
 export default function HomePage() {
-    // Generate FAQPage JSON-LD Schema for rich search snippet results
-    const faqSchema = {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: faqs.map((faq) => ({
-            "@type": "Question",
-            name: faq.q,
-            acceptedAnswer: {
-                "@type": "Answer",
-                text: faq.a,
-            },
-        })),
-    };
-
     return (
         <>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify(faqSchema),
-                }}
-            />
             <HeroSection />
             <ServicesSection />
             <PortfolioSection />

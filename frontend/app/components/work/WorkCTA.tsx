@@ -3,7 +3,7 @@
 import { Video, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { openConsultationModal } from "../BookConsultationModal";
+import { openConsultationModal } from "~/lib/modal";
 
 const WorkCTA = () => {
     return (

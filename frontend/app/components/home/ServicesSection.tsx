@@ -16,8 +16,9 @@ const ServicesSection = () => {
             <div className="absolute inset-0 grid-pattern opacity-50" />
             <div className="noise-overlay" />
 
-            {/* Large background text */}
-            <motion.h1
+            {/* Large background decorative text */}
+            <motion.div
+                aria-hidden="true"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 0.1 }}
                 viewport={{ once: true }}
@@ -25,7 +26,7 @@ const ServicesSection = () => {
                 style={{ writingMode: "sideways-rl", textOrientation: "mixed" }}
             >
                 SERVICES
-            </motion.h1>
+            </motion.div>
 
             <div className="container mx-auto px-6 relative z-10">
                 {/* Section header */}

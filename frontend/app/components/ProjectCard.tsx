@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export interface ProjectItem {
     title: string;
@@ -42,37 +43,33 @@ const ProjectCard = ({
             }}
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
-            className={`group grid grid-cols-1 lg:grid-cols-2 gap-10 items-center ${
-                index % 2 === 1 ? "lg:grid-flow-dense" : ""
-            }`}
+            className={`group grid grid-cols-1 lg:grid-cols-2 gap-10 items-center ${index % 2 === 1 ? "lg:grid-flow-dense" : ""
+                }`}
         >
             {/* Image */}
             <div
-                className={`relative overflow-hidden ${
-                    index % 2 === 1 ? "lg:col-start-2" : ""
-                }`}
+                className={`relative overflow-hidden ${index % 2 === 1 ? "lg:col-start-2" : ""
+                    }`}
             >
-                <div className="relative overflow-hidden">
-                    <motion.img
+                <div className="relative overflow-hidden aspect-2/1 w-full">
+                    <Image
                         src={project.image}
                         alt={`${project.title} - ${project.category} by Strix Devs`}
-                        loading="lazy"
-                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                        animate={{
-                            scale: hoveredIndex === index ? 1.05 : 1,
-                        }}
-                        transition={{ duration: 0.6 }}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        priority={index === 0}
+                        className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
                     />
                     <motion.div
-                        className="absolute inset-0 bg-white/50"
+                        className="absolute inset-0 bg-white/50 pointer-events-none"
                         animate={{
                             opacity: hoveredIndex === index ? 0 : 0.3,
                         }}
                         transition={{ duration: 0.4 }}
                     />
                 </div>
-                <div className="absolute top-4 right-4 w-8 h-8 border-t border-r border-white/40" />
-                <div className="absolute bottom-4 left-4 w-8 h-8 border-b border-l border-white/40" />
+                <div className="absolute top-4 right-4 w-8 h-8 border-t border-r border-white/40 pointer-events-none z-10" />
+                <div className="absolute bottom-4 left-4 w-8 h-8 border-b border-l border-white/40 pointer-events-none z-10" />
             </div>
 
             {/* Content */}

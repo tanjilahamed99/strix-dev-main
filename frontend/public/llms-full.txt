@@ -11,10 +11,17 @@
 - **WhatsApp Support**: +880 1518933208
 - **Social Profiles**:
   - LinkedIn: https://linkedin.com/company/strixdevs
-  - GitHub: https://github.com/strixdevs1
+  - GitHub: https://github.com/strixdevsagency
   - Twitter / X: https://x.com/strixdevs
-  - Facebook: https://facebook.com/strixdevs.1
-  - Instagram: https://instagram.com/strix.devs
+  - Facebook: https://facebook.com/strixdevsagency
+  - Instagram: https://instagram.com/strixdevsagency
+- **Target Regional Markets**:
+  - New York, NY (USA)
+  - Chicago, IL (USA)
+  - Toronto, ON (Canada)
+  - San Francisco, CA (USA)
+  - London, England (UK)
+  - Global clients served across North America, Europe, and Asia-Pacific
 
 ### Mission & Philosophy
 The name "STRIX" is derived from the owl genus, embodying wisdom, vision in the dark, and technical precision. Strix Devs works with non-technical founders, funded startups, and growing enterprises to turn complex software concepts into scalable, clean-coded digital products.

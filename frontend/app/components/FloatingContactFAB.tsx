@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Linkedin, Plus, Phone, Calendar, Video } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { openConsultationModal } from "./BookConsultationModal";
+import { openConsultationModal } from "~/lib/modal";
 
 const FloatingContactFAB = () => {
     const pathname = usePathname();
