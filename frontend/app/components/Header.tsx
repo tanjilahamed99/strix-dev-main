@@ -22,7 +22,7 @@ const Header = ({
     titleLine2,
     desc,
     align = "left",
-    as: Heading = "h1",
+    as: Heading = "h2",
     delay = 0,
     className = "",
 }: HeaderProps) => {
@@ -72,24 +72,26 @@ const Header = ({
             )}
 
             {/* ── Heading ── */}
-            <motion.div>
-                <Heading
-                    className="text-4xl md:text-5xl lg:text-7xl tracking-tight"
-                    aria-label={fullHeadingText}
-                >
-                    {titleLine1 && (
-                        <>
-                            <span>{titleLine1}</span>
-                            {titleLine2 && <br aria-hidden="true" />}
-                        </>
-                    )}
-                    {titleLine2 && (
-                        <span className="text-outline-thick" aria-hidden="true">
-                            {titleLine2}
-                        </span>
-                    )}
-                </Heading>
-            </motion.div>
+            {(titleLine1 || titleLine2) && (
+                <motion.div>
+                    <Heading
+                        className="text-4xl md:text-5xl lg:text-7xl tracking-tight"
+                        aria-label={fullHeadingText}
+                    >
+                        {titleLine1 && (
+                            <>
+                                <span>{titleLine1}</span>
+                                {titleLine2 && <br aria-hidden="true" />}
+                            </>
+                        )}
+                        {titleLine2 && (
+                            <span className="text-outline-thick" aria-hidden="true">
+                                {titleLine2}
+                            </span>
+                        )}
+                    </Heading>
+                </motion.div>
+            )}
 
             {/* ── Description ── */}
             {desc && (

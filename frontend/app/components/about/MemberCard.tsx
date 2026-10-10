@@ -2,6 +2,7 @@
 
 import type { team } from "~/Data/data";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 type Member = (typeof team)[number];
 
@@ -42,12 +43,14 @@ const MemberCard = ({
             className="group relative"
         >
             {/* image */}
-            <div className="relative overflow-hidden">
-                <img
+            <div className="relative overflow-hidden aspect-[4/5] w-full">
+                <Image
                     loading="lazy"
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-full object-cover transition-all duration-700 grayscale group-hover:grayscale-0 group-hover:scale-105"
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition-all duration-700 grayscale group-hover:grayscale-0 group-hover:scale-105"
                 />
                 <div
                     className="absolute inset-0 transition-opacity duration-300"

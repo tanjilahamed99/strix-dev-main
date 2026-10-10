@@ -557,14 +557,6 @@ export default function BookConsultationModal({
 }
 
 /**
- * Utility helper to trigger consultation modal from anywhere
+ * Re-export openConsultationModal from lightweight helper for backward compatibility
  */
-export function openConsultationModal(topic?: string) {
-    if (typeof window !== "undefined") {
-        window.dispatchEvent(
-            new CustomEvent("open-consultation-modal", {
-                detail: { topic },
-            })
-        );
-    }
-}
+export { openConsultationModal } from "~/lib/modal";

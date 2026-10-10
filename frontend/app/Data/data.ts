@@ -115,8 +115,24 @@ export const services = [
 
 export const projects = [
     {
+        title: "Laundry Express",
+        category: "Business",
+        description:
+            "Laundry Express is a modern business website with an integrated payment system, enabling customers to book laundry services and pay online securely. The platform streamlines the booking process and provides a seamless payment experience for users.",
+        techStack: [
+            "Next.js",
+            "TypeScript",
+            "Tailwind CSS",
+            "Supabase",
+            "Stripe",
+        ],
+        image: "/images/projects/laundryexpress.jpg",
+        year: "2026",
+        link: "https://www.laundryexpressservices.com",
+    },
+    {
         title: "Empori Anxo Medicare (EAML)",
-        category: "Corporate Web Platform",
+        category: "Business",
         description:
             "Full-stack corporate website and product catalogue for a medical equipment distribution company in Bangladesh, featuring dynamic product specs, category/brand filtering, a news & blog system, and quote requests — all powered by a custom Filament admin panel.",
         techStack: [
@@ -176,7 +192,7 @@ export const projects = [
     },
     {
         title: "Pulse Pixel",
-        category: "Subscription Platform",
+        category: "SaaS",
         description:
             "Pulse Pixel is a digital subscription platform that provides affordable access to premium learning tools like Udemy, Coursera, Codecademy, and more through custom education plans, all managed from one place.",
         techStack: [
@@ -205,19 +221,9 @@ export const projects = [
             "Paypal",
             "SSLCommerz",
         ],
-        image: "https://i.ibb.co.com/YFb7DpQp/akatsuki.png",
+        image: "/images/projects/akatsuki.jpg",
         year: "2025",
         link: "https://akatsuki-ivory.vercel.app/",
-    },
-    {
-        title: "PrimePix",
-        category: "E-Commerce",
-        description:
-            "Modern e-commerce platform offering refurbished and new gadgets, electronics, and accessories with seamless shopping, secure checkout, and category-based product discovery.",
-        techStack: ["Next.js", "TypeScript", "Sanity CMS", "Stripe"],
-        image: "https://i.ibb.co.com/rGBphptb/Prime-Pix.png",
-        year: "2025",
-        link: "https://prime-pix-omega.vercel.app/",
     },
 ];
 
@@ -225,31 +231,31 @@ export const team = [
     {
         name: "Shamim Hossain",
         role: "CEO & Founder",
-        image: "https://i.ibb.co/Gfqj4gXZ/Shamim.jpg",
+        image: "/images/team/Shamim.jpg",
         bio: "Vision-driven founder leading Strix Devs with a focus on long-term product quality, strong client relationships, and building technology that actually solves real business problems.",
     },
     {
         name: "Shajim Ahmed",
         role: "Lead Engineer",
-        image: "https://i.ibb.co/F4yQhhb3/Shajim.png",
+        image: "/images/team/Shajim.jpg",
         bio: "Leads architecture and backend systems with a strong focus on scalability, performance, and clean engineering practices. Turns complex ideas into reliable production software.",
     },
     {
         name: "Tanjil Ahmed",
         role: "Full-Stack Developer",
-        image: "https://i.ibb.co.com/PvMGv84j/tanjil.jpg",
+        image: "/images/team/tanjil.jpg",
         bio: "Builds seamless end-to-end web experiences, from polished UI to powerful APIs. Passionate about shipping fast without sacrificing code quality.",
     },
     {
         name: "Mirajul Islam Fahim",
         role: "Frontend Developer",
-        image: "https://i.ibb.co.com/tTB7RnrR/Whats-App-Image-2026-04-18-at-11-31-56-PM.jpg",
+        image: "/images/team/miraj.jpg",
         bio: "Crafts modern, responsive interfaces that feel smooth and intuitive. Focused on performance, accessibility, and pixel-perfect execution.",
     },
     {
         name: "Ovi Saha",
         role: "BackEnd Developer",
-        image: "https://i.ibb.co.com/pvV4TqPF/team-1.png",
+        image: "/images/team/ovi.jpg",
         bio: "Supports product delivery across the stack, contributing to new features, optimizations, and continuous improvement of our development workflow.",
     },
 ];

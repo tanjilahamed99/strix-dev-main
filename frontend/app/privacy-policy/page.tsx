@@ -3,7 +3,7 @@ import LegalDocument from "~/components/LegalDoc/Legaldocument";
 import { privacyPolicyData } from "~/Data/Privacypolicy";
 
 export const metadata: Metadata = {
-    title: "Privacy Policy | Strix Devs",
+    title: "Privacy Policy",
     description: "Read the Strix Devs Privacy Policy. Learn how we handle, collect, and protect your data.",
     alternates: {
         canonical: "/privacy-policy",

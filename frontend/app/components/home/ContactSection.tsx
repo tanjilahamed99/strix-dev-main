@@ -5,7 +5,7 @@ import { useState } from "react";
 import { ArrowUpRight, Check, Video, Calendar, Shield } from "lucide-react";
 import { contactInfo } from "~/Data/data";
 import Header from "../Header";
-import { openConsultationModal } from "../BookConsultationModal";
+import { openConsultationModal } from "~/lib/modal";
 
 const ContactSection = () => {
     const [formData, setFormData] = useState({

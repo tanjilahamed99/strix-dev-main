@@ -2,7 +2,8 @@ import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://strixdevs.com";
-    const lastModified = new Date();
+    // Stable release date avoids crawl-budget thrashing from millisecond-churning dates
+    const lastModified = new Date("2026-03-01T00:00:00.000Z");
 
     return [
         {
@@ -34,6 +35,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             lastModified,
             changeFrequency: "monthly",
             priority: 0.75,
+        },
+        {
+            url: `${baseUrl}/llms.txt`,
+            lastModified,
+            changeFrequency: "monthly",
+            priority: 0.7,
         },
         {
             url: `${baseUrl}/privacy-policy`,

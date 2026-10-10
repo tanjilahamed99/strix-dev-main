@@ -1,13 +1,24 @@
 import type { Metadata, Viewport } from "next";
 import { Suspense } from "react";
+import { Outfit, Playfair_Display } from "next/font/google";
 import "./app.css";
 import Navbar from "~/components/Navbar";
-import CustomCursor from "~/components/CustomCursor";
 import Footer from "~/components/Footer";
 import FloatingContactFAB from "~/components/FloatingContactFAB";
-import BookConsultationModal from "~/components/BookConsultationModal";
-import CookieConsent from "~/components/CookieConsent";
 import VisitorTracker from "~/components/VisitorTracker";
+import ClientWidgets from "~/components/ClientWidgets";
+
+const outfit = Outfit({
+    subsets: ["latin"],
+    display: "swap",
+    variable: "--font-outfit",
+});
+
+const playfairDisplay = Playfair_Display({
+    subsets: ["latin"],
+    display: "swap",
+    variable: "--font-playfair",
+});
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://strixdevs.com";
 const COMPANY = "Strix Devs";
@@ -45,9 +56,23 @@ export const metadata: Metadata = {
         "Node.js development services",
         "free software consultation",
         "book tech consultation",
+        "web development agency New York",
+        "custom software development Chicago",
+        "SaaS development agency Toronto",
+        "AI automation agency San Francisco",
+        "software development company London UK",
+        "web developers Toronto ON Canada",
+        "Next.js agency New York NY",
+        "hire software engineers Chicago IL",
+        "full stack developers San Francisco CA",
+        "tech consulting London",
     ],
     creator: COMPANY,
     publisher: COMPANY,
+    other: {
+        "geo.region": "US-NY;US-IL;CA-ON;US-CA;GB-ENG",
+        "geo.placename": "New York, Chicago, Toronto, San Francisco, London",
+    },
     robots: {
         index: true,
         follow: true,
@@ -61,6 +86,9 @@ export const metadata: Metadata = {
     },
     alternates: {
         canonical: "/",
+        types: {
+            "text/markdown": "/llms.txt",
+        },
     },
     openGraph: {
         type: "website",
@@ -71,7 +99,7 @@ export const metadata: Metadata = {
         description: DESCRIPTION,
         images: [
             {
-                url: "https://i.ibb.co.com/Z189FpgK/strixdevs.png",
+                url: `${SITE_URL}/images/strixdevs.jpg`,
                 width: 1200,
                 height: 630,
                 alt: "Strix Devs - Web Development & AI Solutions Agency",
@@ -84,14 +112,14 @@ export const metadata: Metadata = {
         description: DESCRIPTION,
         creator: "@strixdevs",
         site: "@strixdevs",
-        images: ["https://i.ibb.co.com/Z189FpgK/strixdevs.png"],
+        images: [`${SITE_URL}/images/strixdevs.jpg`],
     },
     icons: {
         icon: [
-            { url: "/images/icon.png" },
+            { url: "/images/icon.jpg" },
             { url: "/favicon.svg", type: "image/svg+xml" },
         ],
-        apple: [{ url: "/images/strixdevs.png" }],
+        apple: [{ url: "/images/strixdevs.jpg" }],
     },
 };
 
@@ -100,18 +128,69 @@ export default function RootLayout({
 }: {
     children: React.ReactNode;
 }) {
+    // Target strategic service locations for Local SEO & Schema.org indexing
+    const serviceAreas = [
+        {
+            "@type": "City",
+            name: "New York",
+            addressRegion: "NY",
+            addressCountry: "US",
+        },
+        {
+            "@type": "City",
+            name: "Chicago",
+            addressRegion: "IL",
+            addressCountry: "US",
+        },
+        {
+            "@type": "City",
+            name: "Toronto",
+            addressRegion: "ON",
+            addressCountry: "CA",
+        },
+        {
+            "@type": "City",
+            name: "San Francisco",
+            addressRegion: "CA",
+            addressCountry: "US",
+        },
+        {
+            "@type": "City",
+            name: "London",
+            addressCountry: "GB",
+        },
+    ];
+
     // Global Schema.org JSON-LD definitions for Organization, ProfessionalService, and WebSite
     const organizationSchema = {
         "@context": "https://schema.org",
         "@type": "Organization",
         name: COMPANY,
         url: SITE_URL,
-        logo: `${SITE_URL}/images/icon1.png`,
-        image: "https://i.ibb.co.com/Z189FpgK/strixdevs.png",
+        logo: `${SITE_URL}/images/icon1.jpg`,
+        image: `${SITE_URL}/images/strixdevs.jpg`,
         description: DESCRIPTION,
         email: "info@strixdevs.com",
         foundingDate: "2024",
-        areaServed: "Worldwide",
+        areaServed: [
+            ...serviceAreas,
+            {
+                "@type": "Country",
+                name: "United States",
+            },
+            {
+                "@type": "Country",
+                name: "Canada",
+            },
+            {
+                "@type": "Country",
+                name: "United Kingdom",
+            },
+            {
+                "@type": "AdministrativeArea",
+                name: "Worldwide",
+            },
+        ],
         contactPoint: {
             "@type": "ContactPoint",
             contactType: "customer service",
@@ -121,9 +200,9 @@ export default function RootLayout({
         sameAs: [
             "https://linkedin.com/company/strixdevs",
             "https://x.com/strixdevs",
-            "https://github.com/strixdevs1",
-            "https://facebook.com/strixdevs.1",
-            "https://instagram.com/strix.devs",
+            "https://github.com/strixdevsagency",
+            "https://facebook.com/strixdevsagency",
+            "https://instagram.com/strixdevsagency",
         ],
     };
 
@@ -132,7 +211,8 @@ export default function RootLayout({
         "@type": "ProfessionalService",
         name: COMPANY,
         url: SITE_URL,
-        image: "https://i.ibb.co.com/Z189FpgK/strixdevs.png",
+        logo: `${SITE_URL}/images/icon1.jpg`,
+        image: `${SITE_URL}/images/strixdevs.jpg`,
         priceRange: "$$",
         address: {
             "@type": "PostalAddress",
@@ -145,6 +225,8 @@ export default function RootLayout({
             latitude: 43.6532,
             longitude: -79.3832,
         },
+        areaServed: serviceAreas,
+        serviceArea: serviceAreas,
         serviceType: [
             "Custom Web Application Development",
             "SaaS MVP Development",
@@ -183,7 +265,10 @@ export default function RootLayout({
     };
 
     return (
-        <html lang="en" className="dark scroll-smooth">
+        <html
+            lang="en"
+            className={`${outfit.variable} ${playfairDisplay.variable} dark scroll-smooth`}
+        >
             <head>
                 <script
                     type="application/ld+json"
@@ -209,13 +294,11 @@ export default function RootLayout({
                 <main className="min-h-screen">
                     {children}
                 </main>
-                <BookConsultationModal />
+                <ClientWidgets />
                 <FloatingContactFAB />
-                <CookieConsent />
                 <Suspense fallback={null}>
                     <VisitorTracker />
                 </Suspense>
-                <CustomCursor />
                 <Footer />
             </body>
         </html>

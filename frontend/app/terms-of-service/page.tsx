@@ -3,7 +3,7 @@ import LegalDocument from "~/components/LegalDoc/Legaldocument";
 import { termsOfServiceData } from "~/Data/Termsofservice";
 
 export const metadata: Metadata = {
-    title: "Terms of Service | Strix Devs",
+    title: "Terms of Service",
     description: "Read the Terms of Service for working with Strix Devs software development agency.",
     alternates: {
         canonical: "/terms-of-service",

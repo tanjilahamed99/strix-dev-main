@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Github, Linkedin, Twitter, Instagram, Facebook } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const Footer = () => {
@@ -26,17 +27,17 @@ const Footer = () => {
         },
         {
             icon: Github,
-            href: "https://github.com/strixdevs1",
+            href: "https://github.com/strixdevsagency",
             label: "GitHub",
         },
         {
             icon: Facebook,
-            href: "https://facebook.com/strixdevs.1",
+            href: "https://facebook.com/strixdevsagency",
             label: "Facebook",
         },
         {
             icon: Instagram,
-            href: "https://instagram.com/strix.devs",
+            href: "https://instagram.com/strixdevsagency",
             label: "Instagram",
         },
     ];
@@ -100,8 +101,10 @@ const Footer = () => {
                             className="flex items-center gap-3 mb-6"
                         >
                             {/* Logo */}
-                            <img
-                                src="/images/icon1.png"
+                            <Image
+                                src="/images/icon1.jpg"
+                                width={48}
+                                height={48}
                                 className="w-12 h-12 object-contain"
                                 loading="lazy"
                                 alt="Strix Devs Logo"

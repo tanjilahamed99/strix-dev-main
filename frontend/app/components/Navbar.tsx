@@ -4,8 +4,9 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Calendar } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { openConsultationModal } from "./BookConsultationModal";
+import { openConsultationModal } from "~/lib/modal";
 
 const navLinks = [
     { name: "Home", href: "/" },
@@ -55,10 +56,12 @@ const Navbar = () => {
                             whileHover={{ scale: 1.02 }}
                             className="flex items-center gap-3"
                         >
-                            <img
-                                src="/images/icon1.png"
+                            <Image
+                                src="/images/icon1.jpg"
+                                width={48}
+                                height={48}
                                 className="w-12 h-12 object-contain"
-                                loading="eager"
+                                priority
                                 alt="Strix Devs Logo"
                             />
                             <span className="text-xl tracking-tight glow-text">

@@ -1,20 +1,6 @@
 @plugin 'tailwindcss-animate';
 @import "tailwindcss";
 
-@font-face {
-  font-family: "Outfit";
-  src: url("/fonts/Outfit/Outfit-VariableFont_wght.ttf") format("truetype");
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Playfair Display";
-  src: url("/fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf") format("truetype");
-  font-style: normal;
-  font-display: swap;
-}
-
 :root {
   --background: 0 0% 3%;
   --foreground: 0 0% 98%;
@@ -55,7 +41,7 @@
     color: hsl(var(--foreground));
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-family: 'Outfit',system-ui, sans-serif;
+    font-family: var(--font-outfit), 'Outfit', system-ui, sans-serif;
     cursor: default;
   }
 
@@ -72,8 +58,8 @@
   h1,
   h2,
   h3,
-  h4, .font-heading {
-    font-family: "Playfair Display", Georgia, serif;
+  h4, .font-heading, .font-display {
+    font-family: var(--font-playfair), "Playfair Display", Georgia, serif;
     font-weight: 700;
   }
 }

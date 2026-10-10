@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Check, Video, Calendar, Shield, AlertCircle } from "lucide-react";
 import { contactInfo } from "~/Data/data";
-import { openConsultationModal } from "../BookConsultationModal";
+import { openConsultationModal } from "~/lib/modal";
 
 const ContactForm = () => {
     const [formData, setFormData] = useState({
