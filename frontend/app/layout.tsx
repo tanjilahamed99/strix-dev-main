@@ -271,10 +271,13 @@ export default function RootLayout({
         >
             <head>
                 {/* Google AdSense Site Verification & Script */}
-                <meta name="google-adsense-account" content="ca-pub-9387112526186086" />
+                <meta
+                    name="google-adsense-account"
+                    content="ca-pub-9387112526186086"
+                />
                 <script
                     async
-                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9387112526186086"
+                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9967112526186064"
                     crossOrigin="anonymous"
                 />
                 <script
@@ -298,9 +301,7 @@ export default function RootLayout({
             </head>
             <body className="min-h-screen bg-background text-foreground overflow-x-hidden antialiased selection:bg-foreground selection:text-background">
                 <Navbar />
-                <main className="min-h-screen">
-                    {children}
-                </main>
+                <main className="min-h-screen">{children}</main>
                 <ClientWidgets />
                 <FloatingContactFAB />
                 <Suspense fallback={null}>
