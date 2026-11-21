@@ -270,6 +270,13 @@ export default function RootLayout({
             className={`${outfit.variable} ${playfairDisplay.variable} dark scroll-smooth`}
         >
             <head>
+                {/* Google AdSense Site Verification & Script */}
+                <meta name="google-adsense-account" content="ca-pub-9387112526186086" />
+                <script
+                    async
+                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9387112526186086"
+                    crossOrigin="anonymous"
+                />
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{
